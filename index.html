@@ -3,281 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر السبح الفاخرة</title>
-    
-    <!-- خط القاهرة الفخم -->
+    <title>متجر التصاميم الرقمية - الستايل الفاخر</title>
+    <!-- استدعاء خط Cairo الاحترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- مكتبات Firebase الأساسية لتسجيل الدخول وقاعدة البيانات -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #b38600;
-            --bg: #f9f6f0;
+            /* درجات العنابي والذهبي المتناسقة مع صورتك */
+            --main-gold: #d4af37; 
+            --light-gold: #f3e5ab;
+            --text-color: #ffffff;
+            --success-color: #2ecc71;
         }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--bg);
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 15px;
-            color: #333;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
         }
+
+        body {
+            /* هنا نضع صورتك كخلفية للموقع بالكامل وتثبيتها */
+            background-image: url('image_2.png'); /* ارفع الصورة بنفس المجلد وسمها image_2.png أو ضع رابطها هنا */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-color);
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        /* إضافة طبقة داكنة خفيفة فوق الخلفية لزيادة وضوح النصوص */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 7, 10, 0.4); /* تظليل خفيف جداً متناسق مع العنابي */
+            z-index: -1;
+        }
+
+        /* الهيدر / شريط التنقل */
         header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 20px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            background: rgba(27, 11, 16, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
         }
-        .auth-container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--main-gold);
         }
-        .input-field {
-            width: 90%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-family: 'Cairo';
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-        .product-card {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
-            border: 1px solid #e0e0e0;
-        }
-        .product-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .product-price {
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin: 10px 0;
-        }
-        .btn {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+
+        .menu-btn {
+            font-size: 24px;
             cursor: pointer;
-            font-family: 'Cairo';
-            font-weight: bold;
-            width: 100%;
-            font-size: 1rem;
+            color: var(--text-color);
         }
-        .btn-secondary { background-color: var(--primary); }
-        .btn-auth { width: auto; padding: 10px 30px; margin: 5px; }
-        
-        .cart-section {
-            margin-top: 30px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px dashed var(--primary);
+
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-        .order-box {
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #d4edda;
-            color: #155724;
-            border-radius: 6px;
-            display: none;
+
+        /* كرت المنتج بستايل زجاجي شفاف يعكس الخلفية العنابية */
+        .product-card {
+            background: rgba(35, 16, 22, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 24px;
+            padding: 25px;
             text-align: center;
-            font-size: 1.1rem;
-            border: 1px solid #c3e6cb;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .product-img {
+            width: 100%;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: #e2d4dc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--main-gold);
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(214, 175, 87, 0.3);
+        }
+
+        /* زر إضافة للسلة بستايل ذهبي فاخر متناسق */
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--main-gold), #b8901c);
+            color: #1b0b10;
+            border: none;
+            padding: 14px 35px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(214, 175, 87, 0.25);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* قسم آراء العملاء */
+        .reviews-section {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .reviews-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--main-gold);
+            margin-bottom: 5px;
+        }
+
+        .reviews-subtitle {
+            font-size: 14px;
+            color: #bfa3b2;
+            margin-bottom: 25px;
+        }
+
+        /* إشعار التنبيه النابثق (Toast) */
+        .toast-notification {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2ecc71;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+            transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            width: 90%;
+            max-width: 400px;
+            justify-content: center;
+        }
+
+        .toast-notification.show {
+            top: 30px;
+        }
+
+        /* زر السلة العائم الذهبي */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--main-gold), #b8901c);
+            color: #1b0b10;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(214, 175, 87, 0.4);
+            z-index: 999;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            background-color: #ef4444;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #1b0b10;
         }
     </style>
 </head>
 <body>
 
+    <!-- الإشعار المنبثق -->
+    <div class="toast-notification" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span>تم إضافة المنتج إلى السلة بنجاح!</span>
+    </div>
+
+    <!-- الهيدر -->
     <header>
-        <h1>مرحبًا بك في متجر السبح الفاخرة 📿</h1>
-        <p id="user-welcome">سجل دخولك لتتمكن من الطلب ومتابعة حسابك</p>
+        <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        <div class="logo-area">
+            <span>متجر التصاميم</span>
+            <i class="fab fa-foursquare"></i>
+        </div>
     </header>
 
-    <!-- 1. قسم تسجيل الدخول وإنشاء الحساب -->
-    <div class="auth-container" id="auth-section">
-        <h3>تسجيل الدخول / إنشاء حساب للطلب</h3>
-        <input type="email" id="auth-email" class="input-field" placeholder="البريد الإلكتروني"><br>
-        <input type="password" id="auth-password" class="input-field" placeholder="كلمة المرور"><br>
-        <button class="btn btn-auth btn-secondary" onclick="login()">تسجيل دخول</button>
-        <button class="btn btn-auth" style="background-color: #2980b9;" onclick="register()">إنشاء حساب جديد</button>
-    </div>
-
-    <!-- 2. قسم عرض السبح -->
-    <div class="products-grid">
-        <!-- سبحة 1 -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1601056639398-43da2094bd63?w=500" alt="سبحة بكالايت">
-            <h3>سبحة بكالايت بلجيكي فاخر</h3>
-            <p>خامة ممتازة وملمس ناعم، مسباح يومي راقٍ.</p>
-            <div class="product-price">150 ر.س</div>
-            <button class="btn" onclick="addToCart('بكالايت بلجيكي', 150)">إضافة للسلة</button>
-        </div>
-
-        <!-- سبحة 2 -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1601056639398-43da2094bd63?w=500" alt="سبحة فاتوران">
-            <h3>سبحة فاتوران صب جديد</h3>
-            <p>خراطة راهية ولون مميز يتغير مع الوقت.</p>
-            <div class="product-price">200 ر.س</div>
-            <button class="btn" onclick="addToCart('فاتوران صب جديد', 200)">إضافة للسلة</button>
-        </div>
-    </div>
-
-    <!-- 3. قسم السلة وإصدار رقم الطلب المالي -->
-    <div class="cart-section">
-        <h2>سلة المشتريات 🛒</h2>
-        <div id="cart-items">السلة فارغة حالياً.</div>
-        <p><strong>إجمالي المبيعات (الحساب):</strong> <span id="total-price">0</span> ر.س</p>
-        <button class="btn btn-secondary" onclick="checkout()">تأكيد الطلب وإصدار رقم الطلب للعميل</button>
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
         
-        <div id="order-result" class="order-box"></div>
+        <!-- كرت المنتج -->
+        <div class="product-card">
+            <!-- استبدل الرابط بصورة غلاف المنتج الخاص بك -->
+            <img src="https://via.placeholder.com/500x250/2d131e/ffffff?text=Premium+Design" alt="حزمة التصاميم" class="product-img">
+            
+            <h2 class="product-title">حزمة التصاميم الشاملة</h2>
+            <p class="product-desc">مجموعة شاملة من التصاميم والقوالب الجاهزة للاستخدام الاحترافي بلمسات فاخرة.</p>
+            
+            <div class="product-price">5 ريال</div>
+            
+            <button class="add-to-cart-btn" onclick="addToCart()">
+                <i class="fas fa-shopping-cart"></i>
+                إضافة للسلة
+            </button>
+        </div>
+
+        <!-- قسم الآراء -->
+        <div class="reviews-section">
+            <h2 class="reviews-title">آراء العملاء</h2>
+            <p class="reviews-subtitle">ما يقوله عملاؤنا عن خدماتنا</p>
+        </div>
+
+    </div>
+
+    <!-- زر السلة العائم -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-badge" id="cart-count">0</div>
     </div>
 
     <script>
-        // === إعدادات Firebase الخاصة بك ===
-        // انسخ الإعدادات الخاصة بك من موقع Firebase وضعها هنا لاحقاً ليعمل الحفظ السحابي
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-        
-        // تشغيل فايبربيس (تأكد من إزالة شروط التحقق عند وضع مفاتيحك الحقيقية)
-        if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
-            firebase.initializeApp(firebaseConfig);
-            var auth = firebase.auth();
-            var db = firebase.firestore();
-        }
+        let cartCount = 0;
 
-        let cart = [];
-        let total = 0;
-        let currentUser = null;
+        function addToCart() {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
 
-        // متابعة حالة تسجيل دخول العميل
-        if (typeof auth !== 'undefined') {
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    currentUser = user;
-                    document.getElementById('user-welcome').innerText = `أهلاً بك: ${user.email} 👋`;
-                    document.getElementById('auth-section').style.display = 'none';
-                } else {
-                    currentUser = null;
-                    document.getElementById('user-welcome').innerText = `سجل دخولك لتتمكن من الطلب ومتابعة حسابك`;
-                    document.getElementById('auth-section').style.display = 'block';
-                }
-            });
-        }
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
 
-        // دالة إنشاء حساب جديد
-        function register() {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(() => alert("تم إنشاء الحساب بنجاح!"))
-                .catch(err => alert("خطأ: " + err.message));
-        }
-
-        // دالة تسجيل الدخول
-        function login() {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => alert("تم تسجيل الدخول بنجاح!"))
-                .catch(err => alert("خطأ: " + err.message));
-        }
-
-        // التحكم بالسلة
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            total += price;
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const cartItemsDiv = document.getElementById('cart-items');
-            const totalPriceSpan = document.getElementById('total-price');
-            if (cart.length === 0) {
-                cartItemsDiv.innerHTML = "السلة فارغة حالياً.";
-            } else {
-                cartItemsDiv.innerHTML = cart.map(item => `• ${item.name} (${item.price} ر.س)`).join('<br>');
-            }
-            totalPriceSpan.innerText = total;
-        }
-
-        // تأكيد الطلب وتوليد الرقم الفريد وحفظ البيانات ماليًا
-        function checkout() {
-            if (cart.length === 0) {
-                alert("الرجاء إضافة سبحة إلى السلة أولاً!");
-                return;
-            }
-            if (typeof auth !== 'undefined' && !currentUser) {
-                alert("الرجاء تسجيل الدخول أولاً لتتمكن من إتمام الطلب!");
-                return;
-            }
-
-            // توليد رقم الطلب (حروف وأرقام عشوائية)
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // تمت إزالة الحروف المتشابهة
-            let randomCode = '';
-            for (let i = 0; i < 5; i++) {
-                randomCode += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            const orderNumber = `SB-${randomCode}`;
-
-            // حفظ الطلب في قاعدة البيانات (الإدارة المالية) إذا كان فایبربیس مفعلاً
-            if (typeof db !== 'undefined') {
-                db.collection("orders").add({
-                    orderNumber: orderNumber,
-                    customerEmail: currentUser.email,
-                    items: cart,
-                    totalPrice: total,
-                    date: new Date(),
-                    status: "قيد الانتظار"
-                }).then(() => {
-                    console.log("تم حفظ المبيعات في الإدارة المالية السحابية");
-                });
-            }
-
-            // عرض رقم الطلب للعميل ليقوم بنسخه وإعطائك إياه
-            const orderBox = document.getElementById('order-result');
-            orderBox.style.display = 'block';
-            orderBox.innerHTML = `🎉 <strong>تم اعتماد طلبك بنجاح!</strong><br>
-            رقم الطلب الخاص بك هو: <span style="color:#e74c3c; font-size:1.3rem;">${orderNumber}</span><br>
-            المجموع المالي: <strong>${total} ر.س</strong><br>
-            انسخ هذا الرقم وأعطني إياه لتأكيد وتجهيز سبحتك!`;
-
-            // تفريغ السلة
-            cart = [];
-            total = 0;
-            updateCartUI();
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
     </script>
 </body>
