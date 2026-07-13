@@ -13,9 +13,10 @@
     
     <style>
         :root {
-            --card-burgundy: rgba(35, 14, 21, 0.65);
+            /* بطاقات زجاجية شفافة لتندمج مع خلفيتك العنابية */
+            --card-burgundy: rgba(25, 10, 15, 0.45);
             --text-white: #ffffff;
-            --text-muted: #cbb4c0;
+            --text-muted: #e0d5da;
             --success-green: #2ecc71;
         }
 
@@ -28,12 +29,13 @@
         }
 
         body {
-            background-image: url('image_2.png'); 
+            /* تركيب صورتك كخلفية أساسية للموقع */
+            background-image: url('image_4.png'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            background-color: #14070b;
+            background-color: #1a080e;
             color: var(--text-white);
             min-height: 100vh;
             overflow-x: hidden;
@@ -43,12 +45,12 @@
             content: '';
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 6, 9, 0.5);
+            background: rgba(10, 3, 6, 0.3);
             z-index: -1;
         }
 
         header {
-            background: rgba(22, 9, 13, 0.7);
+            background: rgba(20, 7, 12, 0.5);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -74,10 +76,6 @@
             font-weight: 700;
             color: var(--text-white);
             text-decoration: none;
-        }
-
-        .logo-area img {
-            height: 35px;
         }
 
         .nav-links {
@@ -111,7 +109,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
         .section-header {
@@ -120,9 +118,10 @@
         }
 
         .section-header h2 {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .store-grid {
@@ -131,15 +130,16 @@
             gap: 30px;
         }
 
+        /* كروت زجاجية مودرن باللون الأبيض */
         .product-card {
             background: var(--card-burgundy);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
-            padding: 30px;
+            padding: 35px 30px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -149,15 +149,14 @@
 
         .product-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
         }
 
         .product-icon-box {
             font-size: 45px;
             color: #ffffff;
             margin-bottom: 20px;
-            opacity: 0.95;
         }
 
         .product-title {
@@ -201,12 +200,13 @@
             transform: scale(1.02);
         }
 
+        /* تصاميم النافذة الصغيرة الشفافة */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(10, 4, 6, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(5, 2, 3, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -222,15 +222,15 @@
         }
 
         .modal-box {
-            background: rgba(30, 12, 18, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: rgba(20, 8, 12, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border-radius: 24px;
             padding: 30px;
             width: 90%;
             max-width: 380px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
             transform: translateY(20px);
             transition: transform 0.3s ease;
         }
@@ -263,11 +263,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .modal-close:hover {
-            background: rgba(255,255,255,0.15);
         }
 
         .options-list {
@@ -275,8 +270,8 @@
         }
 
         .options-list li {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 14px 18px;
             border-radius: 14px;
             margin-bottom: 12px;
@@ -307,7 +302,6 @@
     <header>
         <div class="nav-container">
             <a href="#home" class="logo-area">
-                <img src="logo.png" alt="Logo"> 
                 <span>Sen Store</span>
             </a>
             <ul class="nav-links">
@@ -325,25 +319,38 @@
 
         <div class="store-grid">
             
-            <!-- كرت بوستات الديسكورد -->
-            <div class="product-card" onclick="openModal('boosts-modal')">
+            <!-- كرت حسابات ديسكورد القديمة -->
+            <div class="product-card" onclick="openModal('discord-modal')">
                 <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-gem"></i></div>
-                    <h3 class="product-title">بوستات ديسكورد (Server Boosts)</h3>
-                    <p class="product-desc">ارفع مستوى سيرفرك وفعل الميزات الأسطورية والرموز التعبيرية المخصصة بجودة صوت خرافية.</p>
+                    <div class="product-icon-box"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3 class="product-title">حسابات ديسكورد القديمة</h3>
+                    <p class="product-desc">حسابات مميزة منشأة في سنوات قديمة تمنح حسابك بروفايل فخم وطابع الأقدمية النادرة.</p>
                 </div>
                 <div>
                     <div class="product-price">تبدأ من 10 ريال</div>
-                    <button class="action-btn"><i class="fa-solid fa-bolt"></i> عرض باقات البوستات</button>
+                    <button class="action-btn"><i class="fa-solid fa-eye"></i> عرض السنوات والأسعار</button>
+                </div>
+            </div>
+
+            <!-- كرت بوستات السيرفر الجديد -->
+            <div class="product-card" onclick="openModal('boosts-modal')">
+                <div>
+                    <div class="product-icon-box"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="product-title">بوستات سيرفر ديسكورد</h3>
+                    <p class="product-desc">ارفع مستوى سيرفرك وفعل ميزات البيركات والأيقونات ومستوى الصوت الخرافي فوراً.</p>
+                </div>
+                <div>
+                    <div class="product-price">25 ريال</div>
+                    <button class="action-btn"><i class="fa-solid fa-gem"></i> عرض الباقة المتوفرة</button>
                 </div>
             </div>
 
             <!-- كرت نيترو قيفت -->
             <div class="product-card" onclick="openModal('nitro-modal')">
                 <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-nitro"></i><i class="fa-solid fa-gift"></i></div>
+                    <div class="product-icon-box"><i class="fa-solid fa-gift"></i></div>
                     <h3 class="product-title">ديسكورد نيترو قيفت (Gifts)</h3>
-                    <p class="product-desc">روابط نيترو قيفت رسمية ومضمونة 100% لتفعيل اشتراك النيترو على حسابك الشخصي فوراً.</p>
+                    <p class="product-desc">روابط نيترو قيفت رسمية ومضمونة 100% لتفعيل اشتراك النيترو فوراً على حسابك.</p>
                 </div>
                 <div>
                     <div class="product-price">25 ريال</div>
@@ -354,24 +361,43 @@
         </div>
     </div>
 
-    <!-- خانة البوستات المودرن (Modal) -->
-    <div class="modal-overlay" id="boosts-modal">
+    <!-- خانة الحسابات القديمة بالسنوات (Modal) -->
+    <div class="modal-overlay" id="discord-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3>أسعار باقات البوستات</h3>
-                <button class="modal-close" onclick="closeModal('boosts-modal')">&times;</button>
+                <h3>أسعار الحسابات حسب السنة</h3>
+                <button class="modal-close" onclick="closeModal('discord-modal')">&times;</button>
             </div>
             <ul class="options-list">
-                <li><span>2020 بوست</span> <span class="modal-price">10 ريال</span></li>
-                <li><span>2019 بوست</span> <span class="modal-price">17 ريال</span></li>
-                <li><span>2018 بوست</span> <span class="modal-price">28 ريال</span></li>
-                <li><span>2017 بوست</span> <span class="modal-price">33 ريال</span></li>
-                <li><span>2016 بوست</span> <span class="modal-price">54 ريال</span></li>
+                <li><span>حساب 2020</span> <span class="modal-price">10 ريال</span></li>
+                <li><span>حساب 2019</span> <span class="modal-price">17 ريال</span></li>
+                <li><span>حساب 2018</span> <span class="modal-price">28 ريال</span></li>
+                <li><span>حساب 2017</span> <span class="modal-price">33 ريال</span></li>
+                <li><span>حساب 2016</span> <span class="modal-price">54 ريال</span></li>
             </ul>
         </div>
     </div>
 
-    <!-- خانة النيترو المودرن (Modal) -->
+    <!-- خانة البوستات الجديدة (Modal) -->
+    <div class="modal-overlay" id="boosts-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>باقات البوستات المتاحة</h3>
+                <button class="modal-close" onclick="closeModal('boosts-modal')">&times;</button>
+            </div>
+            <ul class="options-list">
+                <li>
+                    <span>14 بوست لسيرفرك</span>
+                    <div>
+                        <span class="modal-price" style="margin-left: 10px;">25 ريال</span>
+                        <span class="badge-status available">متوفر</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- خانة النيترو (Modal) -->
     <div class="modal-overlay" id="nitro-modal">
         <div class="modal-box">
             <div class="modal-header">
