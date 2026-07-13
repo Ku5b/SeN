@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sen Store | متجر سين الاحترافي</title>
-    <!-- استدعاء خط Cairo الاحترافي المحدث -->
+    <!-- استدعاء خط Cairo الاحترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,7 +28,6 @@
         }
 
         body {
-            /* استخدام خلفيتك العنابية المجعدة */
             background-image: url('image_2.png'); 
             background-size: cover;
             background-position: center;
@@ -40,7 +39,6 @@
             overflow-x: hidden;
         }
 
-        /* غطاء ناعم فوق الخلفية لإبراز التصميم المودرن */
         body::before {
             content: '';
             position: fixed;
@@ -49,7 +47,6 @@
             z-index: -1;
         }
 
-        /* هيدر مودرن شفاف */
         header {
             background: rgba(22, 9, 13, 0.7);
             backdrop-filter: blur(15px);
@@ -80,7 +77,7 @@
         }
 
         .logo-area img {
-            height: 35px; /* مقاس مناسب للشعار بالهيدر */
+            height: 35px;
         }
 
         .nav-links {
@@ -111,7 +108,6 @@
             gap: 8px;
         }
 
-        /* الحاوية وشبكة المتجر المودرن */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -135,7 +131,6 @@
             gap: 30px;
         }
 
-        /* كرت منتج مودرن باللون الأبيض */
         .product-card {
             background: var(--card-burgundy);
             backdrop-filter: blur(20px);
@@ -160,7 +155,7 @@
 
         .product-icon-box {
             font-size: 45px;
-            color: #ffffff; /* تم تحويل الأيقونات للأبيض */
+            color: #ffffff;
             margin-bottom: 20px;
             opacity: 0.95;
         }
@@ -185,10 +180,9 @@
             margin-bottom: 20px;
         }
 
-        /* تعديل الزر ليصبح أبيض مودرن وفخم */
         .action-btn {
-            background: #ffffff; /* خلفية بيضاء بالكامل */
-            color: #14070b; /* لون النص غامق متناسق مع الثيم */
+            background: #ffffff;
+            color: #14070b;
             border: none;
             padding: 14px;
             border-radius: 50px;
@@ -207,7 +201,6 @@
             transform: scale(1.02);
         }
 
-        /* تصاميم خانة الخيارات المودرن الصغيرة الزجاجية */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -277,7 +270,6 @@
             background: rgba(255,255,255,0.15);
         }
 
-        /* القائمة الحديثة داخل الخانة الصغيرة باللون الأبيض */
         .options-list {
             list-style: none;
         }
@@ -295,7 +287,7 @@
 
         .modal-price {
             font-weight: 700;
-            color: #ffffff; /* السعر أصبح أبيض ناصع فخم */
+            color: #ffffff;
         }
 
         .badge-status {
@@ -315,7 +307,6 @@
     <header>
         <div class="nav-container">
             <a href="#home" class="logo-area">
-                <!-- هنا الشعار الكامل اللي بترفضه بمجرد تسميته باسم ملفه (مثال: logo.png) -->
                 <img src="logo.png" alt="Logo"> 
                 <span>Sen Store</span>
             </a>
@@ -334,23 +325,23 @@
 
         <div class="store-grid">
             
-            <!-- كرت حسابات الديسكورد المودرن الأبيض -->
-            <div class="product-card" onclick="openModal('discord-modal')">
+            <!-- كرت بوستات الديسكورد -->
+            <div class="product-card" onclick="openModal('boosts-modal')">
                 <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-user-shield"></i></div>
-                    <h3 class="product-title">حسابات ديسكورد قديمة</h3>
-                    <p class="product-desc">حسابات ديسكورد مميزة منشأة في سنوات قديمة ونادرة تمنح بروفايلك طابع الفخامة والأقدمية.</p>
+                    <div class="product-icon-box"><i class="fa-solid fa-gem"></i></div>
+                    <h3 class="product-title">بوستات ديسكورد (Server Boosts)</h3>
+                    <p class="product-desc">ارفع مستوى سيرفرك وفعل الميزات الأسطورية والرموز التعبيرية المخصصة بجودة صوت خرافية.</p>
                 </div>
                 <div>
                     <div class="product-price">تبدأ من 10 ريال</div>
-                    <button class="action-btn"><i class="fa-solid fa-eye"></i> عرض السنوات والأسعار</button>
+                    <button class="action-btn"><i class="fa-solid fa-bolt"></i> عرض باقات البوستات</button>
                 </div>
             </div>
 
-            <!-- كرت نيترو قيفت المودرن الأبيض -->
+            <!-- كرت نيترو قيفت -->
             <div class="product-card" onclick="openModal('nitro-modal')">
                 <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="product-icon-box"><i class="fa-solid fa-nitro"></i><i class="fa-solid fa-gift"></i></div>
                     <h3 class="product-title">ديسكورد نيترو قيفت (Gifts)</h3>
                     <p class="product-desc">روابط نيترو قيفت رسمية ومضمونة 100% لتفعيل اشتراك النيترو على حسابك الشخصي فوراً.</p>
                 </div>
@@ -363,24 +354,24 @@
         </div>
     </div>
 
-    <!-- الخانة الصغيرة المودرن (Modal) - حسابات ديسكورد -->
-    <div class="modal-overlay" id="discord-modal">
+    <!-- خانة البوستات المودرن (Modal) -->
+    <div class="modal-overlay" id="boosts-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3>سنوات وأسعار الحسابات</h3>
-                <button class="modal-close" onclick="closeModal('discord-modal')">&times;</button>
+                <h3>أسعار باقات البوستات</h3>
+                <button class="modal-close" onclick="closeModal('boosts-modal')">&times;</button>
             </div>
             <ul class="options-list">
-                <li><span>حساب 2016</span> <span class="modal-price">54 ريال</span></li>
-                <li><span>حساب 2017</span> <span class="modal-price">33 ريال</span></li>
-                <li><span>حساب 2018</span> <span class="modal-price">28 ريال</span></li>
-                <li><span>حساب 2019</span> <span class="modal-price">17 ريال</span></li>
-                <li><span>حساب 2020</span> <span class="modal-price">10 ريال</span></li>
+                <li><span>2020 بوست</span> <span class="modal-price">10 ريال</span></li>
+                <li><span>2019 بوست</span> <span class="modal-price">17 ريال</span></li>
+                <li><span>2018 بوست</span> <span class="modal-price">28 ريال</span></li>
+                <li><span>2017 بوست</span> <span class="modal-price">33 ريال</span></li>
+                <li><span>2016 بوست</span> <span class="modal-price">54 ريال</span></li>
             </ul>
         </div>
     </div>
 
-    <!-- الخانة الصغيرة المودرن (Modal) - نيترو قيفت -->
+    <!-- خانة النيترو المودرن (Modal) -->
     <div class="modal-overlay" id="nitro-modal">
         <div class="modal-box">
             <div class="modal-header">
