@@ -63,20 +63,15 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* تقسيم الهيدر لـ 3 أقسام لضمان توسط الشعار تماماً */
             align-items: center;
-            padding: 15px 20px;
+            padding: 10px 20px;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-white);
-            text-decoration: none;
+        /* تنسيق الروابط لتكون على اليمين */
+        .nav-right {
+            justify-self: start;
         }
 
         .nav-links {
@@ -97,6 +92,23 @@
             color: var(--text-white);
         }
 
+        /* تنسيق الشعار ليكون بالمنتصف تماماً */
+        .nav-center {
+            justify-self: center;
+        }
+
+        .logo-img {
+            height: 60px; /* يمكنك التحكم في حجم الشعار من هنا */
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* تنسيق زر الديسكورد ليكون على اليسار */
+        .nav-left {
+            justify-self: end;
+        }
+
         .discord-nav-btn {
             background: #5865F2;
             color: white !important;
@@ -105,6 +117,14 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .discord-nav-btn:hover {
+            background: #4752c4;
         }
 
         .container {
@@ -396,21 +416,44 @@
 
         .available { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
         .unavailable { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
+
+        /* تعديلات الشاشات الصغيرة للهيدر الجديد */
+        @media (max-width: 768px) {
+            .nav-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-right, .nav-center, .nav-left {
+                justify-self: center;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- هيدر مودرن -->
+    <!-- هيدر مودرن مقسم لـ 3 أجزاء لضمان التوسط الدقيق للشعار -->
     <header>
         <div class="nav-container">
-            <a href="#home" class="logo-area">
-                <span>Sen Store</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#store">المتجر</a></li>
-                <li><a href="https://discord.gg/sll" target="_blank" class="discord-nav-btn"><i class="fab fa-discord"></i> ديسكورد</a></li>
-            </ul>
+            <!-- اليمين: الروابط الأساسية -->
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#store">المتجر</a></li>
+                </ul>
+            </div>
+            
+            <!-- المنتصف: صورة الشعار باسم الملف الجديد -->
+            <div class="nav-center">
+                <a href="#home">
+                    <img src="تصميم بدون عنوان.png" alt="Sen Store Logo" class="logo-img">
+                </a>
+            </div>
+            
+            <!-- اليسار: زر الديسكورد -->
+            <div class="nav-left">
+                <a href="https://discord.gg/sLL5" target="_blank" class="discord-nav-btn"><i class="fab fa-discord"></i> ديسكورد</a>
+            </div>
         </div>
     </header>
 
@@ -486,7 +529,7 @@
         <div class="contact-footer">
             <h3>للتواصل والدعم الفني</h3>
             <p>لشراء المنتجات أو لمزيد من الاستفسارات، افتح تذكرة (Ticket) داخل سيرفر الديسكورد وسيتم خدمتك فوراً.</p>
-            <a href="https://discord.gg/sll" target="_blank" class="footer-discord-btn">
+            <a href="https://discord.gg/sLL5" target="_blank" class="footer-discord-btn">
                 <i class="fab fa-discord"></i> افتح تذكرة في الديسكورد
             </a>
         </div>
