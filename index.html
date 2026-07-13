@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sen Store | متجر سين الاحترافي</title>
+    <!-- استدعاء خط Cairo الاحترافي المحدث -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --main-gold: #d4af37; 
             --card-burgundy: rgba(35, 14, 21, 0.65);
             --text-white: #ffffff;
             --text-muted: #cbb4c0;
@@ -27,7 +28,7 @@
         }
 
         body {
-            /* استخدام خلفيتك العنابية المجعدة المرفقة */
+            /* استخدام خلفيتك العنابية المجعدة */
             background-image: url('image_2.png'); 
             background-size: cover;
             background-position: center;
@@ -79,7 +80,7 @@
         }
 
         .logo-area img {
-            height: 32px; /* يستهدف شعارك الأبيض المرفق */
+            height: 35px; /* مقاس مناسب للشعار بالهيدر */
         }
 
         .nav-links {
@@ -110,97 +111,16 @@
             gap: 8px;
         }
 
-        /* قسم البداية الاحترافي (Hero) */
-        .hero-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-title {
-            font-size: 46px;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 15px;
-        }
-
-        .hero-desc {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn-primary {
-            background: #4cc2ee; /* لون سماوي مودرن مثل المتجر المرجعي */
-            color: #0f070a;
-            border: none;
-            padding: 12px 28px;
-            font-size: 15px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(76, 194, 238, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-white);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 28px;
-            font-size: 15px;
-            font-weight: 700;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .hero-image-area {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-main-logo {
-            width: 240px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* الحاوية وشبكة المتجر المودرن المقتبسة من الصورة */
+        /* الحاوية وشبكة المتجر المودرن */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .section-header h2 {
@@ -215,32 +135,34 @@
             gap: 30px;
         }
 
-        /* كرت منتج مودرن مطابق لـ fydition-store */
+        /* كرت منتج مودرن باللون الأبيض */
         .product-card {
             background: var(--card-burgundy);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(76, 194, 238, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.05);
         }
 
         .product-icon-box {
-            font-size: 50px;
-            color: #4cc2ee;
+            font-size: 45px;
+            color: #ffffff; /* تم تحويل الأيقونات للأبيض */
             margin-bottom: 20px;
+            opacity: 0.95;
         }
 
         .product-title {
@@ -253,7 +175,7 @@
             font-size: 14px;
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .product-price {
@@ -263,11 +185,12 @@
             margin-bottom: 20px;
         }
 
+        /* تعديل الزر ليصبح أبيض مودرن وفخم */
         .action-btn {
-            background: #4cc2ee;
-            color: #14070b;
+            background: #ffffff; /* خلفية بيضاء بالكامل */
+            color: #14070b; /* لون النص غامق متناسق مع الثيم */
             border: none;
-            padding: 12px;
+            padding: 14px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 15px;
@@ -276,9 +199,15 @@
             justify-content: center;
             gap: 10px;
             width: 100%;
+            transition: background 0.3s, transform 0.2s;
         }
 
-        /* تصاميم خانة الخيارات المودرن الصغيرة الزجاجية (Modern Modal Popup) */
+        .product-card:hover .action-btn {
+            background: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        /* تصاميم خانة الخيارات المودرن الصغيرة الزجاجية */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -321,12 +250,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .modal-header h3 {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
+            color: #ffffff;
         }
 
         .modal-close {
@@ -340,9 +270,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.2s;
         }
 
-        /* القائمة الحديثة داخل الخانة الصغيرة */
+        .modal-close:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* القائمة الحديثة داخل الخانة الصغيرة باللون الأبيض */
         .options-list {
             list-style: none;
         }
@@ -350,9 +285,9 @@
         .options-list li {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 12px 18px;
+            padding: 14px 18px;
             border-radius: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -360,7 +295,7 @@
 
         .modal-price {
             font-weight: 700;
-            color: #4cc2ee;
+            color: #ffffff; /* السعر أصبح أبيض ناصع فخم */
         }
 
         .badge-status {
@@ -372,29 +307,16 @@
 
         .available { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
         .unavailable { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
-
-        /* التنبيه الأخضر التلقائي المودرن المقتبس من صورتك المرفقة */
-        .toast-notification {
-            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-            background: var(--success-green); color: white; padding: 12px 25px;
-            border-radius: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 10px 30px rgba(46,204,113,0.3); transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 3000;
-        }
-        .toast-notification.show { top: 30px; }
     </style>
 </head>
 <body>
 
-    <div class="toast-notification" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span>تم إضافة المنتج إلى السلة!</span>
-    </div>
-
+    <!-- هيدر مودرن -->
     <header>
         <div class="nav-container">
             <a href="#home" class="logo-area">
-                <img src="image_3.png" alt="Logo"> 
+                <!-- هنا الشعار الكامل اللي بترفضه بمجرد تسميته باسم ملفه (مثال: logo.png) -->
+                <img src="logo.png" alt="Logo"> 
                 <span>Sen Store</span>
             </a>
             <ul class="nav-links">
@@ -412,6 +334,7 @@
 
         <div class="store-grid">
             
+            <!-- كرت حسابات الديسكورد المودرن الأبيض -->
             <div class="product-card" onclick="openModal('discord-modal')">
                 <div>
                     <div class="product-icon-box"><i class="fa-solid fa-user-shield"></i></div>
@@ -424,6 +347,7 @@
                 </div>
             </div>
 
+            <!-- كرت نيترو قيفت المودرن الأبيض -->
             <div class="product-card" onclick="openModal('nitro-modal')">
                 <div>
                     <div class="product-icon-box"><i class="fa-solid fa-bolt"></i></div>
@@ -439,6 +363,7 @@
         </div>
     </div>
 
+    <!-- الخانة الصغيرة المودرن (Modal) - حسابات ديسكورد -->
     <div class="modal-overlay" id="discord-modal">
         <div class="modal-box">
             <div class="modal-header">
@@ -455,6 +380,7 @@
         </div>
     </div>
 
+    <!-- الخانة الصغيرة المودرن (Modal) - نيترو قيفت -->
     <div class="modal-overlay" id="nitro-modal">
         <div class="modal-box">
             <div class="modal-header">
