@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sen Store | متجر سين </title>
+    <title>Sen Store | متجر سين الاحترافي</title>
     <!-- استدعاء خط Cairo الاحترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
             color: var(--text-white);
             min-height: 100vh;
             overflow-x: hidden;
-            padding-bottom: 90px; /* مساحة تمنع شريط التنقل السفلي من تغطية المحتوى */
+            padding-bottom: 90px;
         }
 
         body::before {
@@ -97,13 +97,41 @@
             padding: 30px 20px;
         }
 
-        /* --- قسم الأقسام المتنقل يمين ويسار (التايم لاين أو السلايدر الأفقي) --- */
+        /* --- قسم الترحيب الفخم --- */
+        .welcome-hero {
+            background: rgba(25, 10, 15, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .welcome-hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .welcome-hero p {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* --- قسم الأقسام المحدث --- */
         .categories-section {
             margin-bottom: 45px;
         }
 
         .categories-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             margin-bottom: 20px;
             position: relative;
@@ -120,21 +148,20 @@
 
         .categories-slider {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             overflow-x: auto;
             padding: 10px 5px;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
 
-        /* إخفاء شريط التمرير الافتراضي لشكل كأنه تطبيق */
         .categories-slider::-webkit-scrollbar {
             display: none;
         }
 
         .category-item {
             flex: 0 0 auto;
-            width: 110px;
+            width: 120px;
             text-align: center;
             cursor: pointer;
             scroll-snap-align: start;
@@ -146,12 +173,12 @@
         }
 
         .category-image-wrapper {
-            width: 100px;
-            height: 125px;
+            width: 110px;
+            height: 135px;
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.1);
-            margin: 0 auto 8px auto;
+            margin: 0 auto 10px auto;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
@@ -163,13 +190,12 @@
 
         .category-item span {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-white);
             display: block;
         }
 
-
-        /* --- قسم المنتجات المميزة (Grid بتصميم صور كاملة) --- */
+        /* --- قسم المنتجات --- */
         .section-header {
             margin-bottom: 30px;
         }
@@ -181,12 +207,11 @@
 
         .store-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 50px;
         }
 
-        /* كرت منتج احترافي بالصور والتاغات */
         .product-card {
             background: var(--card-burgundy);
             backdrop-filter: blur(20px);
@@ -207,10 +232,9 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* حاوية صورة المنتج والتاغ */
         .product-image-area {
             width: 100%;
-            height: 200px;
+            height: 190px;
             position: relative;
             overflow: hidden;
         }
@@ -226,7 +250,6 @@
             transform: scale(1.06);
         }
 
-        /* التاغ الاحترافي فوق الصورة (مثل منصة PS5) */
         .product-badge {
             position: absolute;
             top: 12px;
@@ -241,7 +264,6 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* تفاصيل الكرت تحت الصورة */
         .product-info {
             padding: 20px;
             display: flex;
@@ -270,7 +292,6 @@
             color: #ffffff;
         }
 
-        /* التقييم بالنجوم أسفل اسم المنتج */
         .product-rating {
             display: flex;
             align-items: center;
@@ -303,11 +324,10 @@
             background: #e6e6e6;
         }
 
-
         /* --- أيقونة الواتساب العائمة --- */
         .whatsapp-floating {
             position: fixed;
-            bottom: 90px; /* ترفع قليلاً لكي لا تتداخل مع الشريط السفلي */
+            bottom: 90px; 
             left: 20px;
             background: #25d366;
             color: white;
@@ -324,12 +344,9 @@
             transition: transform 0.3s;
         }
 
-        .whatsapp-floating:hover {
-            transform: scale(1.1);
-        }
+        .whatsapp-floating:hover { transform: scale(1.1); }
 
-
-        /* --- شريط التنقل السفلي الفخم الثابت (ثيم تطبيقات الجوال) --- */
+        /* --- شريط التنقل السفلي الثابت --- */
         .bottom-nav {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
@@ -351,20 +368,12 @@
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
-            transition: color 0.3s;
             position: relative;
         }
 
-        .bottom-nav-item i {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
+        .bottom-nav-item i { font-size: 20px; margin-bottom: 4px; }
+        .bottom-nav-item.active, .bottom-nav-item:hover { color: #ffffff; }
 
-        .bottom-nav-item.active, .bottom-nav-item:hover {
-            color: #ffffff;
-        }
-
-        /* دائرة إشعار السلة الأحمر (مثل الرقم صفر الموجود بالصورة) */
         .cart-badge-count {
             position: absolute;
             top: -4px; right: 6px;
@@ -379,8 +388,7 @@
             justify-content: center;
         }
 
-
-        /* تصاميم الـ Modals القديمة */
+        /* تصاميم الـ Modals */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -397,7 +405,6 @@
         }
 
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
         .modal-box {
             background: rgba(20, 8, 12, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -416,20 +423,17 @@
         .options-list { list-style: none; }
         .options-list li { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); padding: 14px 18px; border-radius: 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
         .modal-price { font-weight: 700; }
-        .badge-status { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 50px; }
-        .available { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
-        .unavailable { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
 
         @media (max-width: 768px) {
             .nav-container { grid-template-columns: 1fr; gap: 15px; text-align: center; }
             .nav-right, .nav-center, .nav-left { justify-self: center; }
-            header { display: none; } /* نخفي الهيدر العادي بالجوال لأن البديل هو الشريط السفلي الفخم */
+            header { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر الخاص بالكمبيوتر المكتبي -->
+    <!-- الهيدر الخاص بالكمبيوتر -->
     <header>
         <div class="nav-container">
             <div class="nav-right">
@@ -444,127 +448,124 @@
                 </a>
             </div>
             <div class="nav-left">
-                <a href="https://discord.gg/sLL5" target="_blank" class="discord-nav-btn"><i class="fab fa-discord"></i> ديسكورد</a>
+                <a href="https://discord.gg/sLL" target="_blank" class="discord-nav-btn"><i class="fab fa-discord"></i> ديسكورد</a>
             </div>
         </div>
     </header>
 
-    <!-- محتوى الصفحة الرئيسي -->
     <div class="container" id="home">
 
-        <!-- --- أقسام المتجر الدائرية المتحركة (مثل الصورة تماماً) --- -->
+        <!-- 1. قسم الترحيب الفخم الجديد -->
+        <div class="welcome-hero">
+            <h1>مرحباً بك في مـتـجـر سِـيـنْ 👋</h1>
+            <p>وجهتك الأولى والآمنة لخدمات الألعاب والمنتجات الرقمية الاحترافية. تصفح أقسامنا بالأسفل، وللشراء الفوري تفضل بفتح تذكرة داخل السيرفر!</p>
+        </div>
+
+        <!-- 2. أقسام المتجر الثلاثة المطلوبة (حركة يمين ويسار) -->
         <div class="categories-section">
             <h3 class="categories-title">الأقسام</h3>
             <div class="categories-slider">
                 
-                <div class="category-item" onclick="openModal('discord-modal')">
+                <!-- قسم منتجات ديسكورد -->
+                <div class="category-item" onclick="openModal('discord-section-modal')">
                     <div class="category-image-wrapper">
-                        <!-- استبدل الرابط بصورة الحسابات القديمة -->
-                        <img src="https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=200" alt="حسابات">
+                        <img src="https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=200" alt="ديسكورد">
                     </div>
-                    <span>حسابات قديمة</span>
+                    <span>منتجات ديسكورد</span>
                 </div>
 
-                <div class="category-item" onclick="openModal('boosts-modal')">
+                <!-- قسم روكت ليق -->
+                <div class="category-item" onclick="openModal('rocket-section-modal')">
                     <div class="category-image-wrapper">
-                        <!-- استبدل الرابط بصورة البوستات -->
-                        <img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?w=200" alt="بوستات">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200" alt="روكت ليق">
                     </div>
-                    <span>بوستات سيرفر</span>
+                    <span>روكت ليق</span>
                 </div>
 
-                <div class="category-item" onclick="openModal('nitro-modal')">
+                <!-- قسم منتجات رقمية -->
+                <div class="category-item" onclick="openModal('digital-section-modal')">
                     <div class="category-image-wrapper">
-                        <!-- استبدل الرابط بصورة النيترو -->
-                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200" alt="نيترو">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200" alt="منتجات رقمية">
                     </div>
-                    <span>نيترو قيفت</span>
-                </div>
-
-                <div class="category-item">
-                    <div class="category-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200" alt="العاب">
-                    </div>
-                    <span>مابات وألعاب</span>
+                    <span>منتجات رقمية</span>
                 </div>
 
             </div>
         </div>
 
-        <!-- --- قسم المنتجات المميزة بالصور والتاغات والتقييم --- -->
+        <!-- 3. قائمة عرض المنتجات المميزة المحدثة بناءً على الأقسام -->
         <div id="store" class="section-header">
-            <h2>منتجات مميزة</h2>
+            <h2>المنتجات المميزة</h2>
         </div>
 
         <div class="store-grid">
             
-            <!-- كرت حسابات ديسكورد القديمة المطور -->
-            <div class="product-card" onclick="openModal('discord-modal')">
+            <!-- منتج من قسم ديسكورد -->
+            <div class="product-card" onclick="openModal('discord-section-modal')">
                 <div class="product-image-area">
-                    <span class="product-badge">تفعيل فوري</span>
-                    <!-- حط صورة فخمة للمنتج هنا -->
-                    <img src="https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=500" alt="حسابات قديمة">
+                    <span class="product-badge">قسم ديسكورد</span>
+                    <img src="https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=500" alt="ديسكورد">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">حسابات ديسكورد القديمة والنادرة</h3>
+                    <h3 class="product-title">حسابات قديمة وباقات بوستات مميزة</h3>
                     <div class="product-meta-row">
-                        <div class="product-price">10 ريال</div>
+                        <div class="product-price">تبدأ من 10 ريال</div>
                         <div class="product-rating">
                             <i class="fa-solid fa-star stars-icon"></i>
-                            <span>4.9 (19)</span>
+                            <span>5.0 (19)</span>
                         </div>
                     </div>
-                    <button class="action-btn"><i class="fa-solid fa-eye"></i> عرض الأسعار</button>
+                    <button class="action-btn"><i class="fa-solid fa-layer-group"></i> استعراض المنتجات</button>
                 </div>
             </div>
 
-            <!-- كرت بوستات السيرفر المطور -->
-            <div class="product-card" onclick="openModal('boosts-modal')">
+            <!-- منتج من قسم روكت ليق -->
+            <div class="product-card" onclick="openModal('rocket-section-modal')">
                 <div class="product-image-area">
-                    <span class="product-badge">أعلى جودة</span>
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500" alt="بوستات ديسكورد">
+                    <span class="product-badge">قسم روكت ليق</span>
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500" alt="روكت ليق">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">14 بوست سيرفر ديسكورد (3 أشهر)</h3>
+                    <h3 class="product-title">أغراض، سيارات، وائتمان (Credits) روكت ليق</h3>
                     <div class="product-meta-row">
-                        <div class="product-price">25 ريال</div>
+                        <div class="product-price">حسب الطلب</div>
                         <div class="product-rating">
                             <i class="fa-solid fa-star stars-icon"></i>
-                            <span>5.0 (24)</span>
+                            <span>4.9 (12)</span>
                         </div>
                     </div>
-                    <button class="action-btn"><i class="fa-solid fa-gem"></i> باقات المتجر</button>
+                    <button class="action-btn"><i class="fa-solid fa-car"></i> استعراض المنتجات</button>
                 </div>
             </div>
 
-            <!-- كرت نيترو قيفت المطور -->
-            <div class="product-card" onclick="openModal('nitro-modal')">
+            <!-- منتج من قسم منتجات رقمية -->
+            <div class="product-card" onclick="openModal('digital-section-modal')">
                 <div class="product-image-area">
-                    <span class="product-badge">رسمي 100%</span>
-                    <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=500" alt="نيترو قيفت">
+                    <span class="product-badge">منتجات رقمية</span>
+                    <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=500" alt="منتجات رقمية">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">ديسكورد نيترو قيفت شهري / سنوي</h3>
+                    <h3 class="product-title">اشتراكات، مفاتيح ألعاب، وبطاقات شحن</h3>
                     <div class="product-meta-row">
-                        <div class="product-price">25 ريال</div>
+                        <div class="product-price">باقات متنوعة</div>
                         <div class="product-rating">
                             <i class="fa-solid fa-star stars-icon"></i>
-                            <span>4.8 (15)</span>
+                            <span>4.8 (22)</span>
                         </div>
                     </div>
-                    <button class="action-btn"><i class="fa-solid fa-circle-info"></i> حالة التوفر</button>
+                    <button class="action-btn"><i class="fa-solid fa-cube"></i> استعراض المنتجات</button>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- --- أيقونة الواتساب العائمة --- -->
+    <!-- أيقونة الواتساب العائمة -->
     <a href="https://wa.me/966500000000" target="_blank" class="whatsapp-floating">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- --- شريط التنقل السفلي الفخم (ثابت للجوالات مثل الصورة تماماً) --- -->
+    <!-- شريط التنقل السفلي للجوال -->
     <nav class="bottom-nav">
         <a href="#home" class="bottom-nav-item active">
             <i class="fa-solid fa-house"></i>
@@ -585,61 +586,47 @@
         </a>
     </nav>
 
-    <!-- الخانات المنبثقة (Modals) للأسعار -->
-    <div class="modal-overlay" id="discord-modal">
+    <!-- نافذة منبثقة: قسم ديسكورد -->
+    <div class="modal-overlay" id="discord-section-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3>أسعار الحسابات حسب السنة</h3>
-                <button class="modal-close" onclick="closeModal('discord-modal')">&times;</button>
+                <h3>منتجات ديسكورد المتاحة</h3>
+                <button class="modal-close" onclick="closeModal('discord-section-modal')">&times;</button>
             </div>
             <ul class="options-list">
-                <li><span>حساب 2020</span> <span class="modal-price">10 ريال</span></li>
-                <li><span>حساب 2019</span> <span class="modal-price">17 ريال</span></li>
-                <li><span>حساب 2018</span> <span class="modal-price">28 ريال</span></li>
-                <li><span>حساب 2017</span> <span class="modal-price">33 ريال</span></li>
-                <li><span>حساب 2016</span> <span class="modal-price">54 ريال</span></li>
+                <li><span>حسابات قديمة (2016-2020)</span> <span class="modal-price">تبدأ 10 ريال</span></li>
+                <li><span>14 بوست سيرفر (3 أشهر)</span> <span class="modal-price">25 ريال</span></li>
+                <li><span>نيترو قيفت شهري رسمي</span> <span class="modal-price">25 ريال</span></li>
             </ul>
         </div>
     </div>
 
-    <div class="modal-overlay" id="boosts-modal">
+    <!-- نافذة منبثقة: قسم روكت ليق -->
+    <div class="modal-overlay" id="rocket-section-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3>باقات البوستات المتاحة</h3>
-                <button class="modal-close" onclick="closeModal('boosts-modal')">&times;</button>
+                <h3>منتجات روكت ليق المتاحة</h3>
+                <button class="modal-close" onclick="closeModal('rocket-section-modal')">&times;</button>
             </div>
             <ul class="options-list">
-                <li>
-                    <span>14 بوست لسيرفرك</span>
-                    <div>
-                        <span class="modal-price" style="margin-left: 10px;">25 ريال</span>
-                        <span class="badge-status available">متوفر</span>
-                    </div>
-                </li>
+                <li><span>عملات و ائتمان (Credits)</span> <span class="modal-price">تواصل للتسعير</span></li>
+                <li><span>سيارات وأغراض نادرة</span> <span class="modal-price">حسب الصنف</span></li>
+                <li><span>تصاميم مخصصة</span> <span class="modal-price">سعر مميز</span></li>
             </ul>
         </div>
     </div>
 
-    <div class="modal-overlay" id="nitro-modal">
+    <!-- نافذة منبثقة: قسم منتجات رقمية -->
+    <div class="modal-overlay" id="digital-section-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3>توفر نيترو قيفت</h3>
-                <button class="modal-close" onclick="closeModal('nitro-modal')">&times;</button>
+                <h3>المنتجات الرقمية الأخرى</h3>
+                <button class="modal-close" onclick="closeModal('digital-section-modal')">&times;</button>
             </div>
             <ul class="options-list">
-                <li>
-                    <span>نيترو قيفت شهر</span>
-                    <div>
-                        <span class="modal-price" style="margin-left: 10px;">25 ريال</span>
-                        <span class="badge-status available">متوفر</span>
-                    </div>
-                </li>
-                <li>
-                    <span>نيترو قيفت سنة</span>
-                    <div>
-                        <span class="badge-status unavailable">غير متوفر</span>
-                    </div>
-                </li>
+                <li><span>اشتراك شات GPT</span> <span class="modal-price">متوفر</span></li>
+                <li><span>حسابات ألعاب منوعة</span> <span class="modal-price">متوفر</span></li>
+                <li><span>خدمات برمجية مخصصة</span> <span class="modal-price">حسب الطلب</span></li>
             </ul>
         </div>
     </div>
