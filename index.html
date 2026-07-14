@@ -90,11 +90,14 @@
             justify-content: center;
         }
 
-        .center-logo img {
-            height: 45px;
-            width: auto;
-            object-fit: contain;
+        .center-logo h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
             cursor: pointer;
+            background: linear-gradient(45deg, #fff, #9aa0a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .left-actions i {
@@ -198,7 +201,7 @@
         .section-title {
             font-size: 20px;
             font-weight: 700;
-            margin: 15px 0 20px 0;
+            margin: 25px 0 15px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -234,6 +237,13 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(123, 44, 191, 0.3);
         }
 
         .product-img-holder {
@@ -244,17 +254,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
-        .product-img-holder i {
-            font-size: 45px;
-            color: rgba(255, 255, 255, 0.15);
-        }
-
+        /* دعم الصور الحقيقية أو تدرجات الألوان الفخمة مع أيقونات */
         .product-img-holder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+
+        .product-img-holder .fallback-img-gradient {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1f1a3a 0%, #0f0a1c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img-holder i {
+            font-size: 45px;
+            color: rgba(255, 255, 255, 0.65);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .product-details {
@@ -320,18 +343,86 @@
             from { opacity: 0; } to { opacity: 1; }
         }
 
-        .product-page-style {
+        /* --- صفحة عرض تفاصيل المنتج الكاملة (سلة الموردين مثلاً) --- */
+        .product-detail-view {
             background-color: var(--bg-card);
             border-radius: 18px;
             padding: 20px;
             margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.03);
         }
+
+        .detail-header {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .detail-header {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .detail-img-wrapper {
+                width: 300px;
+                flex-shrink: 0;
+            }
+        }
+
+        .detail-img-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1c1e24;
+            position: relative;
+        }
+
+        .detail-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .product-desc-box {
             font-size: 14px;
             color: #b3b9c1;
             line-height: 1.8;
             margin: 15px 0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            border-radius: 12px;
+            border-right: 4px solid var(--accent-color);
         }
+
+        .product-desc-box strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .desc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .desc-list li {
+            position: relative;
+            padding-right: 18px;
+            margin-bottom: 8px;
+        }
+
+        .desc-list li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--accent-color);
+            font-size: 18px;
+            line-height: 1;
+        }
+
         .quantity-controller {
             display: flex;
             align-items: center;
@@ -400,6 +491,52 @@
             z-index: 98;
             text-decoration: none;
         }
+
+        /* النافذة المنبثقة للتفاصيل (Modal) */
+        .product-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            backdrop-filter: blur(8px);
+        }
+
+        .product-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #121318;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            float: left;
+        }
     </style>
 </head>
 <body>
@@ -415,7 +552,7 @@
                 </button>
             </div>
             <div class="center-logo">
-                <h1 style="font-size: 20px; font-weight: 700; letter-spacing: 1px;" onclick="switchTab('home-page')">SEN STORE</h1>
+                <h1 onclick="switchTab('home-page')">SEN STORE</h1>
             </div>
             <div class="left-actions">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -451,62 +588,8 @@
                 <a class="view-all-link" onclick="switchTab('discord-page')">عرض الكل <i class="fa-solid fa-arrow-left"></i></a>
             </div>
 
-            <div class="products-grid">
-                <!-- نيترو قفت شهر -->
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <i class="fab fa-discord" style="color: #5865F2;"></i>
-                    </div>
-                    <div class="product-details">
-                        <h3 class="product-name">نيترو قيفت شهر كامل (Nitro Gift)</h3>
-                        <div class="product-price-row">22 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('نيترو قيفت شهر', 22)">
-                            <i class="fa-solid fa-cart-plus"></i> أضف للسلة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- بوستات شهر -->
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <i class="fa-solid fa-rocket" style="color: #ff73fa;"></i>
-                    </div>
-                    <div class="product-details">
-                        <h3 class="product-name">14 بوست سيرفر ديسكورد لمدة شهر</h3>
-                        <div class="product-price-row">25 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('14 بوست ديسكورد (شهر)', 25)">
-                            <i class="fa-solid fa-cart-plus"></i> أضف للسلة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- حساب ديسكورد قديم -->
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <i class="fa-solid fa-user-shield"></i>
-                    </div>
-                    <div class="product-details">
-                        <h3 class="product-name">حساب ديسكورد قديم (شامل الأيبيك الأصلي)</h3>
-                        <div class="product-price-row">54 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('حساب ديسكورد قديم', 54)">
-                            <i class="fa-solid fa-cart-plus"></i> أضف للسلة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- حساب إنشاء تلقائي -->
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="product-details">
-                        <h3 class="product-name">حسابات ديسكورد إنشاء تلقائي (تصلح للزحف وبوتات)</h3>
-                        <div class="product-price-row">12 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('حساب إنشاء تلقائي', 12)">
-                            <i class="fa-solid fa-cart-plus"></i> أضف للسلة
-                        </button>
-                    </div>
-                </div>
+            <div class="products-grid" id="home-products-grid">
+                <!-- تعبئة المنتجات تلقائياً بجافا سكريبت -->
             </div>
 
             <!-- قسم روكت ليق السريع -->
@@ -514,30 +597,8 @@
                 <h2>خدمات وحسابات روكت ليق 🚀</h2>
                 <a class="view-all-link" onclick="switchTab('rocket-page')">استعراض القسم <i class="fa-solid fa-arrow-left"></i></a>
             </div>
-            <div class="products-grid">
-                <!-- رفع رانك -->
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <i class="fa-solid fa-trophy" style="color: #ffb703;"></i>
-                    </div>
-                    <div class="product-details">
-                        <h3 class="product-name">خدمة رفع رانك روكت ليق (Rank Boosting)</h3>
-                        <div class="product-price-row">تبدأ من 15 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="switchTab('rocket-page')">اختر الرانك</button>
-                    </div>
-                </div>
-
-                <!-- حساب جاهز -->
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <i class="fa-solid fa-gamepad" style="color: #219ebc;"></i>
-                    </div>
-                    <div class="product-details">
-                        <h3 class="product-name">حساب روكت ليق رانك GC (جراند ماستر) جاهز</h3>
-                        <div class="product-price-row">120 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('حساب روكت ليق رانك GC', 120)">أضف للسلة</button>
-                    </div>
-                </div>
+            <div class="products-grid" id="home-rocket-grid">
+                <!-- تعبئة المنتجات تلقائياً بجافا سكريبت -->
             </div>
 
         </div>
@@ -547,66 +608,39 @@
             <div class="section-title">
                 <h2>جميع منتجات ديسكورد</h2>
             </div>
-            <div class="products-grid" id="discord-full-grid">
-                <!-- يتم نسخها تلقائياً -->
-            </div>
+            <div class="products-grid" id="discord-full-grid"></div>
         </div>
 
-        <!-- ================= [3] صفحة قسم روكت ليق (الجديد بالكامل) ================= -->
+        <!-- ================= [3] صفحة قسم روكت ليق ================= -->
         <div id="rocket-page" class="store-tab-content">
             <div class="section-title">
                 <h2>قسم روكت ليق (حسابات + رانكات)</h2>
             </div>
-            
-            <div class="products-grid">
-                <!-- خدمة رفع الرانك -->
-                <div class="product-card" style="grid-column: span 2;">
-                    <div class="product-details" style="text-align: right; padding: 16px;">
-                        <h3 style="font-size: 18px; color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-arrow-up-trend-dots" style="color: var(--accent-color);"></i> خدمة رفع الرانك الاحترافية</h3>
-                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">نوفر لك خدمة رفع رانك آمنة وسريعة 100% على يد لاعبين محترفين (GC/SSL) وبدون أي مخاطر على حسابك.</p>
-                        <div class="product-price-row" style="text-align: right;">السعر يحدد حسب رانكك الحالي والرانك المطلوب</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('طلب رفع رانك روكت ليق', 0)" style="background-color: var(--accent-color);">
-                            <i class="fa-solid fa-comments"></i> اطلب الخدمة مباشرة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- حساب رانك شامبيون -->
-                <div class="product-card">
-                    <div class="product-img-holder"><i class="fa-solid fa-award"></i></div>
-                    <div class="product-details">
-                        <h3 class="product-name">حساب روكت ليق رانك Champion 1</h3>
-                        <div class="product-price-row">75 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('حساب روكت ليق Champion 1', 75)">أضف للسلة</button>
-                    </div>
-                </div>
-
-                <!-- حساب قفت عشوائي -->
-                <div class="product-card">
-                    <div class="product-img-holder"><i class="fa-solid fa-box"></i></div>
-                    <div class="product-details">
-                        <h3 class="product-name">حساب روكت ليق عشوائي (يحتوي لوت وأغراض قديمة)</h3>
-                        <div class="product-price-row">35 ر.س</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('حساب روكت ليق عشوائي', 35)">أضف للسلة</button>
-                    </div>
-                </div>
-            </div>
+            <div class="products-grid" id="rocket-full-grid"></div>
         </div>
 
         <!-- ================= [4] صفحة بكج الموردين ================= -->
         <div id="suppliers-page" class="store-tab-content">
-            <div class="product-page-style">
-                <h2 style="font-size: 22px; margin-bottom: 10px;">بكج الموردين</h2>
+            <div class="product-detail-view">
+                <div class="detail-header">
+                    <div class="detail-img-wrapper">
+                        <!-- رابط صورة افتراضية فخمة للبكج، يمكنك تغيير الرابط برابط صورتك الخاصة -->
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Suppliers Package">
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <h2 style="font-size: 22px; margin-bottom: 5px;">بكج الموردين الشامل</h2>
+                        <span style="background: rgba(123, 44, 191, 0.2); color: #c8b6ff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">أقوى بكج موردين لعام 2026</span>
+                    </div>
+                </div>
                 <div class="product-desc-box">
-                    <strong>بكج الموردين مكون من +200 مورد مميزين جداً ونادرين! ✨</strong><br><br>
-                    البكج يحتوي على تصنيفات الموردين التالية:<br>
-                    1 - بوستات سيرفرات ديسكورد <br>
-                    2 - نيترو قيفت وأكواد رخيصة <br>
-                    3 - حسابات ديسكورد قديمة ونادرة <br>
-                    4 - توكنات ديسكورد عالية الجودة <br>
-                    5 - حسابات إنشاء تلقائي وأدوات <br>
-                    6 - بوتات مخصصة لحماية وإدارة السيرفرات <br>
-                    7 - اشتراكات تطبيقات وشحن ألعاب وميزات (كريدت روكت ليق، فيزا التركية، يوزرات خماسية وسداسية مميزة).
+                    <strong>بكج الموردين مكون من +200 مورد مميزين جداً ونادرين! ✨</strong>
+                    <ul class="desc-list">
+                        <li>موردين بوستات سيرفرات ديسكورد بأسعار لا تصدق</li>
+                        <li>موردين نيترو قيفت وأكواد رخيصة</li>
+                        <li>حسابات ديسكورد قديمة ونادرة (شاملة الأيبك)</li>
+                        <li>توكنات ديسكورد عالية الجودة وبوتات حماية</li>
+                        <li>اشتراكات تطبيقات وشحن ألعاب وميزات (كريدت روكت ليق، فيزا التركية، يوزرات خماسية وسداسية).</li>
+                    </ul>
                 </div>
                 <div style="font-size: 24px; font-weight: 700; color: #ffffff; margin: 20px 0;">62.92 ر.س</div>
                 <div style="font-size: 14px; color: var(--text-muted);">الكمية:</div>
@@ -621,7 +655,7 @@
             </div>
         </div>
 
-        <!-- ================= [5] صفحة سلة المشتريات المدمجة التفاعلية ================= -->
+        <!-- ================= [5] صفحة سلة المشتريات المدمجة ================= -->
         <div id="cart-page" class="store-tab-content">
             <div class="section-title">
                 <h2>سلة المشتريات الخاصّة بك</h2>
@@ -629,7 +663,7 @@
             <div id="cart-items-wrapper" style="margin-bottom: 20px;">
                 <p style="text-align: center; color: var(--text-muted); padding: 30px;" id="empty-cart-msg">السلة فارغة حالياً، تصفح المتجر وأضف منتجات!</p>
             </div>
-            <div class="product-page-style" id="cart-summary-box" style="display: none;">
+            <div class="product-detail-view" id="cart-summary-box" style="display: none;">
                 <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 15px;">
                     <span>الإجمالي الكلي:</span>
                     <span id="cart-total-price">0 ر.س</span>
@@ -640,12 +674,22 @@
 
     </div>
 
+    <!-- النافذة المنبثقة التفاعلية لتفاصيل المنتج ووصفه (Modal) -->
+    <div class="product-modal" id="productModal" onclick="closeProductModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-body">
+                <button class="modal-close-btn" onclick="toggleModal(false)"><i class="fa-solid fa-xmark"></i></button>
+                <div id="modal-content-area"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- أيقونة الواتساب العائمة -->
     <a href="https://wa.me/966500000000" target="_blank" class="whatsapp-btn-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- شريط التنقل السفلي الثابت والمطابق للقطات المرفقة -->
+    <!-- شريط التنقل السفلي الثابت -->
     <nav class="bottom-navbar">
         <div class="bottom-nav-link active-link" id="nav-home" onclick="switchTab('home-page')">
             <i class="fa-solid fa-house"></i>
@@ -666,8 +710,66 @@
         </div>
     </nav>
 
-    <!-- الأكواد البرمجية الذكية لإدارة المتجر والسلة والقوائم -->
+    <!-- الأكواد البرمجية لإدارة المتجر والسلة والقوائم -->
     <script>
+        // قاعدة بيانات المنتجات - عدل روابط الصور والوصف هنا بكل سهولة!
+        const productsDB = [
+            {
+                id: "p1",
+                name: "نيترو قيفت شهر كامل (Nitro Gift)",
+                price: 22,
+                category: "discord",
+                image: "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=600&auto=format&fit=crop", // ضع رابط صورة النيترو هنا
+                iconClass: "fab fa-discord",
+                desc: "<strong>مميزات الخدمة:</strong><ul class='desc-list'><li>نيترو قيفت رسمي وآمن 100%</li><li>صلاحية كاملة لمدة شهر كامل بدون أي انقطاع</li><li>ميزات البث عالي الدقة (HD) وإرسال ملفات بحجم أكبر</li><li>استخدام الستيكرات والرموز التعبيرية المخصصة في كل السيرفرات</li></ul>"
+            },
+            {
+                id: "p2",
+                name: "14 بوست سيرفر ديسكورد لمدة شهر",
+                price: 25,
+                category: "discord",
+                image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=600&auto=format&fit=crop", 
+                iconClass: "fa-solid fa-rocket",
+                desc: "<strong>تفاصيل البوستات:</strong><ul class='desc-list'><li>تحصل على 14 بوست لتفعيل اللفل 3 في سيرفرك فوراً</li><li>ثبات كامل ومضمون لمدة شهر</li><li>يرفع مستوى جودة الصوت والأيقونات وإمكانية تخصيص بنر سيرفرك</li></ul>"
+            },
+            {
+                id: "p3",
+                name: "حساب ديسكورد قديم (شامل الأيبيك الأصلي)",
+                price: 54,
+                category: "discord",
+                image: "", // اتركها فارغة إذا تبي النظام يسوي تدرج لوني تلقائي فخم
+                iconClass: "fa-solid fa-user-shield",
+                desc: "<strong>معلومات الحساب الموثوق:</strong><ul class='desc-list'><li>حساب ديسكورد قديم ونادر يعزز ثقة سيرفرك وهيبتك</li><li>يشمل الإيميل الأصلي الأول والأيبيك الأصلي</li><li>آمن وغير مسترد ومفحوص بالكامل من فريقنا</li></ul>"
+            },
+            {
+                id: "p4",
+                name: "حسابات ديسكورد إنشاء تلقائي (تصلح للزحف وبوتات)",
+                price: 12,
+                category: "discord",
+                image: "",
+                iconClass: "fa-solid fa-robot",
+                desc: "<strong>تفاصيل الحسابات:</strong><ul class='desc-list'><li>حسابات مهيئة ومثالية للتطوير وإضافة بوتات الخدمة</li><li>منشأة بشكل آمن ومقاومة للحظر السريع</li><li>تسليم فوري للمعلومات</li></ul>"
+            },
+            {
+                id: "rl1",
+                name: "خدمة رفع رانك روكت ليق (Rank Boosting)",
+                price: 15,
+                category: "rocket",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop", 
+                iconClass: "fa-solid fa-trophy",
+                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين في رانك جراند ماستر SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
+            },
+            {
+                id: "rl2",
+                name: "حساب روكت ليق رانك GC (جراند ماستر) جاهز",
+                price: 120,
+                category: "rocket",
+                image: "",
+                iconClass: "fa-solid fa-gamepad",
+                desc: "<strong>محتويات الحساب الفخم:</strong><ul class='desc-list'><li>الحساب برانك جراند ماستر جاهز للتألق</li><li>كامل البيانات مع إيميل الإنشاء الأصلي</li><li>يحتوي على جوائز وأغراض نادرة</li></ul>"
+            }
+        ];
+
         let cart = [];
         let currentSuppliersQty = 1;
 
@@ -704,6 +806,90 @@
             }
 
             window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function renderProducts() {
+            const homeProductsGrid = document.getElementById('home-products-grid');
+            const homeRocketGrid = document.getElementById('home-rocket-grid');
+            const discordFullGrid = document.getElementById('discord-full-grid');
+            const rocketFullGrid = document.getElementById('rocket-full-grid');
+
+            let homeDiscordHTML = "";
+            let homeRocketHTML = "";
+            let fullDiscordHTML = "";
+            let fullRocketHTML = "";
+
+            productsDB.forEach(prod => {
+                const imgHTML = prod.image ? 
+                    `<img src="${prod.image}" alt="${prod.name}">` : 
+                    `<div class="fallback-img-gradient"><i class="${prod.iconClass}"></i></div>`;
+
+                const cardHTML = `
+                    <div class="product-card" onclick="openProductDetails('${prod.id}')">
+                        <div class="product-img-holder">
+                            ${imgHTML}
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-name">${prod.name}</h3>
+                            <div class="product-price-row">${prod.price} ر.س</div>
+                            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart('${prod.name}', ${prod.price})">
+                                <i class="fa-solid fa-cart-plus"></i> أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                if (prod.category === "discord") {
+                    homeDiscordHTML += cardHTML;
+                    fullDiscordHTML += cardHTML;
+                } else if (prod.category === "rocket") {
+                    homeRocketHTML += cardHTML;
+                    fullRocketHTML += cardHTML;
+                }
+            });
+
+            if(homeProductsGrid) homeProductsGrid.innerHTML = homeDiscordHTML;
+            if(homeRocketGrid) homeRocketGrid.innerHTML = homeRocketHTML;
+            if(discordFullGrid) discordFullGrid.innerHTML = fullDiscordHTML;
+            if(rocketFullGrid) rocketFullGrid.innerHTML = fullRocketHTML;
+        }
+
+        function openProductDetails(id) {
+            const product = productsDB.find(p => p.id === id);
+            if (!product) return;
+
+            const modalContentArea = document.getElementById('modal-content-area');
+            const imgHTML = product.image ? 
+                `<img src="${product.image}" style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px;">` : 
+                `<div style="width:100%; height:150px; background:linear-gradient(135deg, #1f1a3a, #0f0a1c); display:flex; align-items:center; justify-content:center; border-radius:12px; margin-bottom:15px;"><i class="${product.iconClass}" style="font-size:50px; color:rgba(255,255,255,0.7)"></i></div>`;
+
+            modalContentArea.innerHTML = `
+                ${imgHTML}
+                <h2 style="font-size:20px; font-weight:700; color:#fff; margin-bottom:10px;">${product.name}</h2>
+                <div class="product-desc-box">
+                    ${product.desc}
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+                    <div>
+                        <span style="font-size:12px; color:var(--text-muted); display:block;">السعر</span>
+                        <strong style="font-size:22px; color:#fff;">${product.price} ر.س</strong>
+                    </div>
+                    <button class="add-to-cart-btn" style="width:auto; padding:12px 25px; font-size:14px; background-color:var(--accent-color);" onclick="addToCart('${product.name}', ${product.price}); toggleModal(false);">
+                        أضف للسلة <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            `;
+            toggleModal(true);
+        }
+
+        function toggleModal(show) {
+            const modal = document.getElementById('productModal');
+            if(show) modal.classList.add('show');
+            else modal.classList.remove('show');
+        }
+
+        function closeProductModal(event) {
+            toggleModal(false);
         }
 
         function changeQty(amount) {
@@ -754,17 +940,17 @@
             document.getElementById('cart-count-footer').innerText = totalCount;
 
             if (cart.length === 0) {
-                emptyMsg.style.display = 'block';
-                summaryBox.style.display = 'none';
-                wrapper.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 30px;" id="empty-cart-msg">السلة فارغة حالياً، تصفح المتجر وأضف منتجات!</p>`;
+                if(emptyMsg) emptyMsg.style.display = 'block';
+                if(summaryBox) summaryBox.style.display = 'none';
+                if(wrapper) wrapper.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 30px;" id="empty-cart-msg">السلة فارغة حالياً، تصفح المتجر وأضف منتجات!</p>`;
             } else {
-                emptyMsg.style.display = 'none';
-                summaryBox.style.display = 'block';
+                if(emptyMsg) emptyMsg.style.display = 'none';
+                if(summaryBox) summaryBox.style.display = 'block';
                 
                 let htmlContent = '';
                 cart.forEach((item, index) => {
                     htmlContent += `
-                        <div class="product-page-style" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px;">
+                        <div class="product-detail-view" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px;">
                             <div>
                                 <h4 style="font-size: 15px; font-weight: 700;">${item.name}</h4>
                                 <span style="font-size: 13px; color: var(--text-muted);">الكمية: ${item.qty} × ${item.price} ر.س</span>
@@ -776,8 +962,8 @@
                         </div>
                     `;
                 });
-                wrapper.innerHTML = htmlContent;
-                document.getElementById('cart-total-price').innerText = totalPrice.toFixed(2) + " ر.س";
+                if(wrapper) wrapper.innerHTML = htmlContent;
+                if(document.getElementById('cart-total-price')) document.getElementById('cart-total-price').innerText = totalPrice.toFixed(2) + " ر.س";
             }
         }
 
@@ -787,9 +973,7 @@
         }
 
         window.onload = function() {
-            // نسخ محتوى ديسكورد لصفحة القسم الخاص به تلقائياً
-            const discordGridContent = document.getElementById('home-page').querySelector('.products-grid').innerHTML;
-            document.getElementById('discord-full-grid').innerHTML = discordGridContent;
+            renderProducts();
             updateCartUI();
         }
     </script>
