@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sen Store | متجر سين </title>
+    <title>Sen Store | متجر سين الاحترافي</title>
     <!-- خط Cairo الاحترافي للمتاجر -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,12 +90,30 @@
             justify-content: center;
         }
 
-        /* الشعار فوق يسار */
+        /* الشعار والتنسيق الجديد بجانب النص */
+        .left-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* مسافة بين الشعار والاسم */
+            cursor: pointer;
+        }
+
+        .left-logo i {
+            font-size: 20px;
+            color: #a582ff;
+            text-shadow: 0 0 10px rgba(165, 130, 255, 0.6);
+        }
+
+        .left-logo img {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+        }
+
         .left-logo h1 {
             font-size: 18px;
             font-weight: 800;
             letter-spacing: 1.5px;
-            cursor: pointer;
             background: linear-gradient(135deg, #a582ff, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -603,8 +621,16 @@
                     <span class="cart-badge" id="cart-count-header">0</span>
                 </button>
             </div>
-            <div class="left-logo">
-                <h1 onclick="switchTab('home-page')">SEN STORE</h1>
+            
+            <!-- الشعار فوق يسار مع الأيقونة الجديدة المضيئة بجانبه -->
+            <div class="left-logo" onclick="switchTab('home-page')">
+                <!-- الأيقونة الافتراضية (تاج فخم) -->
+                <i class="fa-solid fa-crown"></i> 
+                
+                <!-- لو تبي تستخدم صورة شعار خاصة فيك بالمستقبل، احذف سطر التاج اللي فوق وفعل هذا السطر: -->
+                <!-- <img src="logo.png" alt="SEN Logo"> -->
+                
+                <h1>SEN STORE</h1>
             </div>
         </div>
     </header>
@@ -667,7 +693,7 @@
 
             <!-- قسم روكت ليق السريع -->
             <div class="section-title">
-                <h2> روكت ليق </h2>
+                <h2>روكت ليق </h2>
                 <a class="view-all-link" onclick="switchTab('rocket-page')">استعراض القسم <i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="products-grid" id="home-rocket-grid">
@@ -679,7 +705,7 @@
         <!-- ================= [2] صفحة قسم ديسكورد بالكامل ================= -->
         <div id="discord-page" class="store-tab-content">
             <div class="section-title">
-                <h2> منتجات ديسكورد</h2>
+                <h2>جميع منتجات ديسكورد</h2>
             </div>
             <div class="products-grid" id="discord-full-grid"></div>
         </div>
@@ -705,9 +731,9 @@
                     </div>
                 </div>
                 <div class="product-desc-box">
-                    <strong>بكج الموردين مكون من مورد   ! ✨</strong>
+                    <strong>بكج الموردين مكون من  مورد مميزين  ! ✨</strong>
                     <ul class="desc-list">
-                        <li>موردين بوستات سيرفرات ديسكورد بأسعار ممتازة</li>
+                        <li>موردين بوستات سيرفرات ديسكورد </li>
                         <li>موردين نيترو قيفت  </li>
                         <li>حسابات ديسكورد قديمة ونادرة </li>
                     </ul>
@@ -820,7 +846,7 @@
                 price: 15,
                 category: "rocket",
                 iconClass: "fa-solid fa-trophy",
-                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين في رانك جراند ماستر SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
+                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين محترفين SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
             },
             {
                 id: "rl2",
@@ -828,7 +854,7 @@
                 price: 120,
                 category: "rocket",
                 iconClass: "fa-solid fa-gamepad",
-                desc: "<strong>محتويات الحساب الفخم:</strong><ul class='desc-list'><li>الحساب برانك جراند ماستر جاهز للتألق</li><li>كامل البيانات مع إيميل الإنشاء الأصلي</li><li>يحتوي على جوائز وأغراض نادرة</li></ul>"
+                desc: "<strong>محتويات الحساب :</strong><ul class='desc-list'><li>الحساب برانك جراند تشامبيون جاهز للتألق</li><li>كامل البيانات مع إيميل الإنشاء الأصلي</li><li> </li></ul>"
             }
         ];
 
