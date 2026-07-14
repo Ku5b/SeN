@@ -120,6 +120,61 @@
             text-shadow: 0 0 10px rgba(165, 130, 255, 0.3);
         }
 
+        /* --- شريط التنبيه العلوي المخصص --- */
+        .notice-bar {
+            background: linear-gradient(135deg, #1b1633, #0f0b21);
+            border: 1px solid rgba(165, 130, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin: 10px auto 15px auto;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInNotice 0.4s ease;
+        }
+
+        .notice-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #d1c4e9;
+            line-height: 1.4;
+        }
+
+        .notice-content i {
+            color: #a582ff;
+            font-size: 14px;
+        }
+
+        .notice-content a {
+            color: #ffffff;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .close-notice-btn {
+            background: none;
+            border: none;
+            color: #8e9297;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 2px 6px;
+            transition: color 0.2s;
+        }
+
+        .close-notice-btn:hover {
+            color: #ff3b30;
+        }
+
+        @keyframes fadeInNotice {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- شريط الأقسام الدائري الأفقي --- */
         .categories-scroll-wrapper {
             margin: 15px 0 25px 0;
@@ -624,16 +679,22 @@
             
             <!-- الشعار فوق يسار مع الأيقونة الجديدة المضيئة بجانبه -->
             <div class="left-logo" onclick="switchTab('home-page')">
-                <!-- الأيقونة الافتراضية (تاج فخم) -->
                 <i class="fa-solid fa-crown"></i> 
-                
-                <!-- لو تبي تستخدم صورة شعار خاصة فيك بالمستقبل، احذف سطر التاج اللي فوق وفعل هذا السطر: -->
-                <!-- <img src="logo.png" alt="SEN Logo"> -->
-                
                 <h1>SEN STORE</h1>
             </div>
         </div>
     </header>
+
+    <!-- شريط التنبيه المخصص لعدم وجود دفع مباشر وتوجيه العميل للدعم -->
+    <div class="container" style="padding-bottom: 0;" id="noticeContainer">
+        <div class="notice-bar">
+            <div class="notice-content">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>الموقع مخصص لعرض المنتجات، للتواصل توجه إلى <a href="https://discord.gg/sll" target="_blank">الدعم الفني</a></span>
+            </div>
+            <button class="close-notice-btn" onclick="closeNotice()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
 
     <!-- القائمة الجانبية المنسدلة (Drawer Menu) -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleSidebar(false)"></div>
@@ -647,7 +708,7 @@
             <li><a class="sidebar-item" onclick="switchTab('discord-page')"><i class="fab fa-discord"></i> خدمات ديسكورد</a></li>
             <li><a class="sidebar-item" onclick="switchTab('rocket-page')"><i class="fa-solid fa-bolt"></i> قسم روكت ليق</a></li>
             <li><a class="sidebar-item" onclick="switchTab('suppliers-page')"><i class="fa-solid fa-box-open"></i> بكج الموردين</a></li>
-            <li><a class="sidebar-item" href="https://discord.gg/sLL5" target="_blank"><i class="fa-solid fa-headset"></i> الدعم الفني</a></li>
+            <li><a class="sidebar-item" href="https://discord.gg/sll" target="_blank"><i class="fa-solid fa-headset"></i> الدعم الفني</a></li>
         </ul>
     </div>
 
@@ -683,7 +744,7 @@
 
             <!-- قسم خدمات ديسكورد -->
             <div class="section-title">
-                <h2>منتجات ديسكورد </h2>
+                <h2>منتجات ديسكورد الأساسية</h2>
                 <a class="view-all-link" onclick="switchTab('discord-page')">عرض الكل <i class="fa-solid fa-arrow-left"></i></a>
             </div>
 
@@ -693,7 +754,7 @@
 
             <!-- قسم روكت ليق السريع -->
             <div class="section-title">
-                <h2>روكت ليق </h2>
+                <h2>  روكت ليق </h2>
                 <a class="view-all-link" onclick="switchTab('rocket-page')">استعراض القسم <i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="products-grid" id="home-rocket-grid">
@@ -705,7 +766,7 @@
         <!-- ================= [2] صفحة قسم ديسكورد بالكامل ================= -->
         <div id="discord-page" class="store-tab-content">
             <div class="section-title">
-                <h2>جميع منتجات ديسكورد</h2>
+                <h2> منتجات ديسكورد</h2>
             </div>
             <div class="products-grid" id="discord-full-grid"></div>
         </div>
@@ -726,19 +787,19 @@
                         <i class="fa-solid fa-box-open"></i>
                     </div>
                     <div style="flex-grow: 1;">
-                        <h2 style="font-size: 20px; margin-bottom: 5px;">افتح متجرك</h2>
+                        <h2 style="font-size: 20px; margin-bottom: 5px;">بكج الموردين الشامل</h2>
                         <span style="background: rgba(92, 63, 161, 0.2); color: #c8b6ff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">أقوى بكج موردين لعام 2026</span>
                     </div>
                 </div>
                 <div class="product-desc-box">
-                    <strong>بكج الموردين مكون من  مورد مميزين  ! ✨</strong>
+                    <strong>بكج الموردين مكون اكثر من مورد مميزين  ! ✨</strong>
                     <ul class="desc-list">
-                        <li>موردين بوستات سيرفرات ديسكورد </li>
+                        <li>موردين بوستات سيرفرات ديسكورد  </li>
                         <li>موردين نيترو قيفت  </li>
-                        <li>حسابات ديسكورد قديمة ونادرة </li>
+                        <li>حسابات ديسكورد قديمة )</li>
                     </ul>
                 </div>
-                <div style="font-size: 22px; font-weight: 700; color: #ffffff; margin: 20px 0;">30 ر.س</div>
+                <div style="font-size: 22px; font-weight: 700; color: #ffffff; margin: 20px 0;">62.92 ر.س</div>
                 <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 5px;">الكمية:</div>
                 <div class="quantity-controller">
                     <button onclick="changeQty(-1)">-</button>
@@ -826,15 +887,15 @@
             },
             {
                 id: "p3",
-                name: "حساب ديسكورد انشاء قديم",
-                price: 54,
+                name: "حساب ديسكورد انشاء قديم  )",
+                price: على حسب المنتج,
                 category: "discord",
                 iconClass: "fa-solid fa-user-shield",
-                desc: "<strong>معلومات الحساب الموثوق:</strong><ul class='desc-list'><li>حساب ديسكورد قديم ونادر    </li><li>يشمل الإيميل الأصلي</li><li>آمن وغير مسترد ومفحوص بالكامل من فريقنا</li></ul>"
+                desc: "<strong>معلومات الحساب الموثوق:</strong><ul class='desc-list'><li>حساب ديسكورد قديم ونادر يعزز ثقة سيرفرك وهيبتك</li><li>يشمل الإيميل الأصلي الأول والأيبيك الأصلي</li><li>آمن وغير مسترد ومفحوص بالكامل من فريقنا</li></ul>"
             },
             {
                 id: "p4",
-                name: "حسابات ديسكورد إنشاء  ",
+                name: "حسابات ديسكورد إنشاء تلقائي (تصلح للزحف وبوتات)",
                 price: 12,
                 category: "discord",
                 iconClass: "fa-solid fa-robot",
@@ -843,18 +904,18 @@
             {
                 id: "rl1",
                 name: "خدمة رفع رانك روكت ليق (Rank Boosting)",
-                price: 15,
+                price: على حسب رانكك,
                 category: "rocket",
                 iconClass: "fa-solid fa-trophy",
-                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين محترفين SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
+                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين في رانك جراند ماستر SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
             },
             {
                 id: "rl2",
-                name: "حساب روكت ليق رانك GC (جراند تشامبيون) جاهز",
+                name: "حساب روكت ليق رانك GC (جراند تشمابيون) جاهز",
                 price: 120,
                 category: "rocket",
                 iconClass: "fa-solid fa-gamepad",
-                desc: "<strong>محتويات الحساب :</strong><ul class='desc-list'><li>الحساب برانك جراند تشامبيون جاهز للتألق</li><li>كامل البيانات مع إيميل الإنشاء الأصلي</li><li> </li></ul>"
+                desc: "<strong>محتويات الحساب الفخم:</strong><ul class='desc-list'><li>الحساب برانك جراند ماستر جاهز للتألق</li><li>كامل البيانات مع إيميل الإنشاء الأصلي</li><li>يحتوي على جوائز وأغراض نادرة</li></ul>"
             }
         ];
 
@@ -894,6 +955,18 @@
             }
 
             window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function closeNotice() {
+            const notice = document.getElementById('noticeContainer');
+            if (notice) {
+                notice.style.transition = "all 0.3s ease";
+                notice.style.opacity = "0";
+                notice.style.transform = "translateY(-10px)";
+                setTimeout(() => {
+                    notice.style.display = "none";
+                }, 300);
+            }
         }
 
         function renderProducts() {
