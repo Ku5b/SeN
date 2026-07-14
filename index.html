@@ -13,12 +13,12 @@
     
     <style>
         :root {
-            /* بطاقات زجاجية شفافة لتندمج مع خلفيتك العنابية */
-            --card-burgundy: rgba(25, 10, 15, 0.45);
+            --card-burgundy: rgba(25, 10, 15, 0.55);
             --text-white: #ffffff;
             --text-muted: #e0d5da;
             --success-green: #2ecc71;
             --gold-stars: #f1c40f;
+            --discord-purple: #5865F2;
         }
 
         * {
@@ -30,7 +30,6 @@
         }
 
         body {
-            /* تركيب صورتك كخلفية أساسية للموقع */
             background-image: url('image_4.png'); 
             background-size: cover;
             background-position: center;
@@ -40,18 +39,19 @@
             color: var(--text-white);
             min-height: 100vh;
             overflow-x: hidden;
+            padding-bottom: 90px; /* مساحة تمنع شريط التنقل السفلي من تغطية المحتوى */
         }
 
         body::before {
             content: '';
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 3, 6, 0.3);
+            background: rgba(10, 3, 6, 0.4);
             z-index: -1;
         }
 
         header {
-            background: rgba(20, 7, 12, 0.5);
+            background: rgba(20, 7, 12, 0.6);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -64,53 +64,22 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr auto 1fr; /* تقسيم الهيدر لـ 3 أقسام لضمان توسط الشعار تماماً */
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
             padding: 10px 20px;
         }
 
-        /* تنسيق الروابط لتكون على اليمين */
-        .nav-right {
-            justify-self: start;
-        }
+        .nav-right { justify-self: start; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text-white); }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
+        .nav-center { justify-self: center; }
+        .logo-img { height: 60px; width: auto; object-fit: contain; display: block; }
 
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-white);
-        }
-
-        /* تنسيق الشعار ليكون بالمنتصف تماماً */
-        .nav-center {
-            justify-self: center;
-        }
-
-        .logo-img {
-            height: 60px; /* يمكنك التحكم في حجم الشعار من هنا */
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* تنسيق زر الديسكورد ليكون على اليسار */
-        .nav-left {
-            justify-self: end;
-        }
-
+        .nav-left { justify-self: end; }
         .discord-nav-btn {
-            background: #5865F2;
+            background: var(--discord-purple);
             color: white !important;
             border-radius: 50px;
             padding: 8px 18px !important;
@@ -120,209 +89,298 @@
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .discord-nav-btn:hover {
-            background: #4752c4;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px 40px 20px;
+            padding: 30px 20px;
         }
 
-        /* بنر قائمة البداية (Hero Section) */
-        .hero-section {
-            background: rgba(25, 10, 15, 0.35);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            padding: 50px 30px;
-            text-align: center;
-            margin-bottom: 60px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        /* --- قسم الأقسام المتنقل يمين ويسار (التايم لاين أو السلايدر الأفقي) --- */
+        .categories-section {
+            margin-bottom: 45px;
         }
 
-        .hero-section h1 {
-            font-size: 42px;
+        .categories-title {
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .hero-section p {
-            font-size: 16px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 25px auto;
-            line-height: 1.8;
-        }
-
-        /* لافتة التقييمات */
-        .rating-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .rating-badge .stars {
-            color: var(--gold-stars);
-            display: flex;
-            gap: 3px;
-        }
-
-        .rating-count {
-            color: #2ecc71;
-            background: rgba(46, 204, 113, 0.15);
-            padding: 2px 10px;
-            border-radius: 50px;
-            font-size: 13px;
-            direction: ltr;
+            margin-bottom: 20px;
+            position: relative;
             display: inline-block;
         }
 
-        .section-header {
+        .categories-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px; right: 0; width: 50%; height: 3px;
+            background: #ffffff;
+            border-radius: 10px;
+        }
+
+        .categories-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* إخفاء شريط التمرير الافتراضي لشكل كأنه تطبيق */
+        .categories-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-item {
+            flex: 0 0 auto;
+            width: 110px;
             text-align: center;
-            margin-bottom: 40px;
+            cursor: pointer;
+            scroll-snap-align: start;
+            transition: transform 0.3s;
+        }
+
+        .category-item:hover {
+            transform: scale(1.05);
+        }
+
+        .category-image-wrapper {
+            width: 100px;
+            height: 125px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            margin: 0 auto 8px auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .category-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-item span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-white);
+            display: block;
+        }
+
+
+        /* --- قسم المنتجات المميزة (Grid بتصميم صور كاملة) --- */
+        .section-header {
+            margin-bottom: 30px;
         }
 
         .section-header h2 {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .store-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
 
-        /* كروت زجاجية مودرن */
+        /* كرت منتج احترافي بالصور والتاغات */
         .product-card {
             background: var(--card-burgundy);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
-            padding: 35px 30px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             cursor: pointer;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .product-icon-box {
-            font-size: 45px;
+        /* حاوية صورة المنتج والتاغ */
+        .product-image-area {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image-area img {
+            transform: scale(1.06);
+        }
+
+        /* التاغ الاحترافي فوق الصورة (مثل منصة PS5) */
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
             color: #ffffff;
-            margin-bottom: 20px;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* تفاصيل الكرت تحت الصورة */
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .product-title {
-            font-size: 22px;
+            font-size: 17px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
 
-        .product-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 25px;
+        .product-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
         .product-price {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 20px;
+        }
+
+        /* التقييم بالنجوم أسفل اسم المنتج */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .product-rating .stars-icon {
+            color: var(--gold-stars);
         }
 
         .action-btn {
             background: #ffffff;
             color: #14070b;
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s;
         }
 
         .product-card:hover .action-btn {
-            background: #f0f0f0;
-            transform: scale(1.02);
+            background: #e6e6e6;
         }
 
-        /* قسم تذييل التواصل السفلي */
-        .contact-footer {
-            background: rgba(25, 10, 15, 0.4);
+
+        /* --- أيقونة الواتساب العائمة --- */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 90px; /* ترفع قليلاً لكي لا تتداخل مع الشريط السفلي */
+            left: 20px;
+            background: #25d366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-floating:hover {
+            transform: scale(1.1);
+        }
+
+
+        /* --- شريط التنقل السفلي الفخم الثابت (ثيم تطبيقات الجوال) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(15, 5, 9, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
         }
 
-        .contact-footer h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .contact-footer p {
-            font-size: 15px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .footer-discord-btn {
-            display: inline-flex;
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            background: #5865F2;
-            color: white;
+            color: var(--text-muted);
             text-decoration: none;
-            padding: 14px 35px;
-            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .bottom-nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .bottom-nav-item.active, .bottom-nav-item:hover {
+            color: #ffffff;
+        }
+
+        /* دائرة إشعار السلة الأحمر (مثل الرقم صفر الموجود بالصورة) */
+        .cart-badge-count {
+            position: absolute;
+            top: -4px; right: 6px;
+            background: #ff3b30;
+            color: white;
+            font-size: 10px;
             font-weight: 700;
-            font-size: 16px;
-            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.2);
-            transition: background 0.3s, transform 0.2s;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .footer-discord-btn:hover {
-            background: #4752c4;
-            transform: translateY(-2px);
-        }
 
-        /* تصاميم النافذة الصغيرة الشفافة */
+        /* تصاميم الـ Modals القديمة */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -338,13 +396,10 @@
             z-index: 2000;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-box {
-            background: rgba(20, 8, 12, 0.75);
+            background: rgba(20, 8, 12, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -353,190 +408,184 @@
             width: 90%;
             max-width: 380px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
         }
 
-        .modal-overlay.active .modal-box {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .modal-header h3 {
-            font-size: 19px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .modal-close {
-            background: rgba(255,255,255,0.05);
-            border: none;
-            color: white;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .options-list {
-            list-style: none;
-        }
-
-        .options-list li {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 14px 18px;
-            border-radius: 14px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-price {
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .badge-status {
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 50px;
-        }
-
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .modal-header h3 { font-size: 19px; font-weight: 700; }
+        .modal-close { background: rgba(255,255,255,0.05); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .options-list { list-style: none; }
+        .options-list li { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); padding: 14px 18px; border-radius: 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .modal-price { font-weight: 700; }
+        .badge-status { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 50px; }
         .available { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
         .unavailable { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
 
-        /* تعديلات الشاشات الصغيرة للهيدر الجديد */
         @media (max-width: 768px) {
-            .nav-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                text-align: center;
-            }
-            .nav-right, .nav-center, .nav-left {
-                justify-self: center;
-            }
+            .nav-container { grid-template-columns: 1fr; gap: 15px; text-align: center; }
+            .nav-right, .nav-center, .nav-left { justify-self: center; }
+            header { display: none; } /* نخفي الهيدر العادي بالجوال لأن البديل هو الشريط السفلي الفخم */
         }
     </style>
 </head>
 <body>
 
-    <!-- هيدر مودرن مقسم لـ 3 أجزاء لضمان التوسط الدقيق للشعار -->
+    <!-- الهيدر الخاص بالكمبيوتر المكتبي -->
     <header>
         <div class="nav-container">
-            <!-- اليمين: الروابط الأساسية -->
             <div class="nav-right">
                 <ul class="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#store">المتجر</a></li>
                 </ul>
             </div>
-            
-            <!-- المنتصف: صورة الشعار باسم الملف الجديد -->
             <div class="nav-center">
                 <a href="#home">
                     <img src="تصميم بدون عنوان.png" alt="Sen Store Logo" class="logo-img">
                 </a>
             </div>
-            
-            <!-- اليسار: زر الديسكورد -->
             <div class="nav-left">
-                <a href="https://discord.gg/sll" target="_blank" class="discord-nav-btn"><i class="fab fa-discord"></i> ديسكورد</a>
+                <a href="https://discord.gg/sLL5" target="_blank" class="discord-nav-btn"><i class="fab fa-discord"></i> ديسكورد</a>
             </div>
         </div>
     </header>
 
+    <!-- محتوى الصفحة الرئيسي -->
     <div class="container" id="home">
-        
-        <!-- قائمة البداية الاحترافية مع توجيه الديسكورد والتقييم -->
-        <div class="hero-section">
-            <h1>مرحباً بك في Sen Store</h1>
-            <p>وجهتك الأولى والآمنة لخدمات ديسكورد الاحترافية. للشراء أو الاستفسار، تفضل بزيارة سيرفرنا وافتح تذكرة فوراً!</p>
-            
-            <div class="rating-badge">
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+
+        <!-- --- أقسام المتجر الدائرية المتحركة (مثل الصورة تماماً) --- -->
+        <div class="categories-section">
+            <h3 class="categories-title">الأقسام</h3>
+            <div class="categories-slider">
+                
+                <div class="category-item" onclick="openModal('discord-modal')">
+                    <div class="category-image-wrapper">
+                        <!-- استبدل الرابط بصورة الحسابات القديمة -->
+                        <img src="https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=200" alt="حسابات">
+                    </div>
+                    <span>حسابات قديمة</span>
                 </div>
-                <span>تقييم المتجر</span>
-                <span class="rating-count">+19 تقييم</span>
+
+                <div class="category-item" onclick="openModal('boosts-modal')">
+                    <div class="category-image-wrapper">
+                        <!-- استبدل الرابط بصورة البوستات -->
+                        <img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?w=200" alt="بوستات">
+                    </div>
+                    <span>بوستات سيرفر</span>
+                </div>
+
+                <div class="category-item" onclick="openModal('nitro-modal')">
+                    <div class="category-image-wrapper">
+                        <!-- استبدل الرابط بصورة النيترو -->
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200" alt="نيترو">
+                    </div>
+                    <span>نيترو قيفت</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200" alt="العاب">
+                    </div>
+                    <span>مابات وألعاب</span>
+                </div>
+
             </div>
         </div>
 
-        <!-- قسم المتجر والمنتجات -->
+        <!-- --- قسم المنتجات المميزة بالصور والتاغات والتقييم --- -->
         <div id="store" class="section-header">
-            <h2>قائمة المنتجات الرقمية</h2>
+            <h2>منتجات مميزة</h2>
         </div>
 
         <div class="store-grid">
             
-            <!-- كرت حسابات ديسكورد القديمة -->
+            <!-- كرت حسابات ديسكورد القديمة المطور -->
             <div class="product-card" onclick="openModal('discord-modal')">
-                <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-user-shield"></i></div>
-                    <h3 class="product-title">حسابات ديسكورد القديمة</h3>
-                    <p class="product-desc">حسابات مميزة منشأة في سنوات قديمة تمنح حسابك بروفايل فخم وطابع الأقدمية النادرة.</p>
+                <div class="product-image-area">
+                    <span class="product-badge">تفعيل فوري</span>
+                    <!-- حط صورة فخمة للمنتج هنا -->
+                    <img src="https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=500" alt="حسابات قديمة">
                 </div>
-                <div>
-                    <div class="product-price">تبدأ من 10 ريال</div>
-                    <button class="action-btn"><i class="fa-solid fa-eye"></i> عرض السنوات والأسعار</button>
+                <div class="product-info">
+                    <h3 class="product-title">حسابات ديسكورد القديمة والنادرة</h3>
+                    <div class="product-meta-row">
+                        <div class="product-price">10 ريال</div>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star stars-icon"></i>
+                            <span>4.9 (19)</span>
+                        </div>
+                    </div>
+                    <button class="action-btn"><i class="fa-solid fa-eye"></i> عرض الأسعار</button>
                 </div>
             </div>
 
-            <!-- كرت بوستات السيرفر -->
+            <!-- كرت بوستات السيرفر المطور -->
             <div class="product-card" onclick="openModal('boosts-modal')">
-                <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-bolt"></i></div>
-                    <h3 class="product-title">بوستات سيرفر ديسكورد</h3>
-                    <p class="product-desc">ارفع مستوى سيرفرك وفعل ميزات البيركات والأيقونات ومستوى الصوت الخرافي فوراً.</p>
+                <div class="product-image-area">
+                    <span class="product-badge">أعلى جودة</span>
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500" alt="بوستات ديسكورد">
                 </div>
-                <div>
-                    <div class="product-price">25 ريال</div>
-                    <button class="action-btn"><i class="fa-solid fa-gem"></i> عرض الباقة المتوفرة</button>
+                <div class="product-info">
+                    <h3 class="product-title">14 بوست سيرفر ديسكورد (3 أشهر)</h3>
+                    <div class="product-meta-row">
+                        <div class="product-price">25 ريال</div>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star stars-icon"></i>
+                            <span>5.0 (24)</span>
+                        </div>
+                    </div>
+                    <button class="action-btn"><i class="fa-solid fa-gem"></i> باقات المتجر</button>
                 </div>
             </div>
 
-            <!-- كرت نيترو قيفت -->
+            <!-- كرت نيترو قيفت المطور -->
             <div class="product-card" onclick="openModal('nitro-modal')">
-                <div>
-                    <div class="product-icon-box"><i class="fa-solid fa-gift"></i></div>
-                    <h3 class="product-title">ديسكورد نيترو قيفت (Gifts)</h3>
-                    <p class="product-desc">روابط نيترو قيفت رسمية ومضمونة 100% لتفعيل اشتراك النيترو فوراً على حسابك.</p>
+                <div class="product-image-area">
+                    <span class="product-badge">رسمي 100%</span>
+                    <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=500" alt="نيترو قيفت">
                 </div>
-                <div>
-                    <div class="product-price">25 ريال</div>
-                    <button class="action-btn"><i class="fa-solid fa-circle-info"></i> عرض حالة التوفر</button>
+                <div class="product-info">
+                    <h3 class="product-title">ديسكورد نيترو قيفت شهري / سنوي</h3>
+                    <div class="product-meta-row">
+                        <div class="product-price">25 ريال</div>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star stars-icon"></i>
+                            <span>4.8 (15)</span>
+                        </div>
+                    </div>
+                    <button class="action-btn"><i class="fa-solid fa-circle-info"></i> حالة التوفر</button>
                 </div>
             </div>
 
         </div>
-
-        <!-- قسم أسفل الموقع للتواصل والدعم الفني عبر التذاكر -->
-        <div class="contact-footer">
-            <h3>للتواصل والدعم الفني</h3>
-            <p>لشراء المنتجات أو لمزيد من الاستفسارات، افتح تذكرة (Ticket) داخل سيرفر الديسكورد وسيتم خدمتك فوراً.</p>
-            <a href="https://discord.gg/sll" target="_blank" class="footer-discord-btn">
-                <i class="fab fa-discord"></i> افتح تذكرة في الديسكورد
-            </a>
-        </div>
-
     </div>
 
-    <!-- خانة الحسابات القديمة بالسنوات (Modal) -->
+    <!-- --- أيقونة الواتساب العائمة --- -->
+    <a href="https://wa.me/966500000000" target="_blank" class="whatsapp-floating">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- --- شريط التنقل السفلي الفخم (ثابت للجوالات مثل الصورة تماماً) --- -->
+    <nav class="bottom-nav">
+        <a href="#home" class="bottom-nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#store" class="bottom-nav-item">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>الأقسام</span>
+        </a>
+        <a href="https://discord.gg/sLL5" target="_blank" class="bottom-nav-item">
+            <i class="fa-solid fa-headset"></i>
+            <span>التذاكر</span>
+        </a>
+        <a href="https://discord.gg/sLL5" target="_blank" class="bottom-nav-item">
+            <i class="fa-solid fa-shopping-bag"></i>
+            <span class="cart-badge-count">0</span>
+            <span>السلة</span>
+        </a>
+    </nav>
+
+    <!-- الخانات المنبثقة (Modals) للأسعار -->
     <div class="modal-overlay" id="discord-modal">
         <div class="modal-box">
             <div class="modal-header">
@@ -553,7 +602,6 @@
         </div>
     </div>
 
-    <!-- خانة البوستات (Modal) -->
     <div class="modal-overlay" id="boosts-modal">
         <div class="modal-box">
             <div class="modal-header">
@@ -572,7 +620,6 @@
         </div>
     </div>
 
-    <!-- خانة النيترو (Modal) -->
     <div class="modal-overlay" id="nitro-modal">
         <div class="modal-box">
             <div class="modal-header">
