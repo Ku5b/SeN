@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sen Store | متجر سين الاحترافي</title>
+    <title>Sen Store | متجر سين </title>
+    <!-- خط Cairo الاحترافي للمتاجر -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome المحدثة -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -88,7 +90,7 @@
             justify-content: center;
         }
 
-        /* نقل الشعار لليسار العلوي */
+        /* الشعار فوق يسار */
         .left-logo h1 {
             font-size: 18px;
             font-weight: 800;
@@ -100,16 +102,16 @@
             text-shadow: 0 0 10px rgba(165, 130, 255, 0.3);
         }
 
-        /* --- شريط الأقسام الدائري الأفقي (مثل متجر CSR) --- */
+        /* --- شريط الأقسام الدائري الأفقي --- */
         .categories-scroll-wrapper {
             margin: 15px 0 25px 0;
             overflow-x: auto;
             white-space: nowrap;
             padding-bottom: 8px;
-            scrollbar-width: none; /* لإخفاء السكرول بار في فايرفوكس */
+            scrollbar-width: none;
         }
         .categories-scroll-wrapper::-webkit-scrollbar {
-            display: none; /* لإخفاء السكرول بار في كروم وسفاري */
+            display: none;
         }
 
         .categories-scroll-container {
@@ -144,12 +146,6 @@
         .category-circle-item:hover .category-circle-img {
             transform: scale(1.05);
             border-color: var(--accent-color);
-        }
-
-        .category-circle-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .category-circle-img i {
@@ -275,7 +271,7 @@
             cursor: pointer;
         }
 
-        /* --- شبكة المنتجات (عمودين بالجوال) --- */
+        /* --- شبكة المنتجات --- */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -307,39 +303,26 @@
             border-color: rgba(92, 63, 161, 0.4);
         }
 
-        /* حامل الصورة والحدود المربعة */
+        /* حامل الأيقونة التلقائية (تم إلغاء الصور لضمان عدم ظهور علامات استفهام) */
         .product-img-holder {
             width: 100%;
             aspect-ratio: 1 / 1;
             position: relative;
-            background-color: #111319;
+            background: linear-gradient(145deg, #161821 0%, #0d0e14 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
 
-        .product-img-holder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* التدرج الداكن مع الأيقونات الرمادية المطفية */
-        .product-img-holder .fallback-img-gradient {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #161821 0%, #0d0e14 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         .product-img-holder i {
             font-size: 48px;
-            color: #4b4f59; /* لون رمادي مطفي تماماً */
-            text-shadow: none;
+            color: #4b4f59; /* لون رمادي مطفي فخم جداً وبسيط */
+            transition: color 0.2s;
+        }
+
+        .product-card:hover .product-img-holder i {
+            color: #6a52b8; /* يضيء خفيفاً عند التقريب */
         }
 
         .product-details {
@@ -432,19 +415,21 @@
             }
         }
 
+        /* حامل أيقونة الموردين في صفحتها */
         .detail-img-wrapper {
             width: 100%;
             aspect-ratio: 16 / 9;
             border-radius: 12px;
             overflow: hidden;
-            background: #111319;
-            position: relative;
+            background: linear-gradient(145deg, #161821 0%, #0d0e14 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .detail-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .detail-img-wrapper i {
+            font-size: 60px;
+            color: #4b4f59;
         }
 
         .product-desc-box {
@@ -603,6 +588,7 @@
 </head>
 <body>
 
+    <!-- الهيدر الرئيسي للمتجر -->
     <header>
         <div class="header-container">
             <div class="right-actions">
@@ -612,12 +598,14 @@
                     <span class="cart-badge" id="cart-count-header">0</span>
                 </button>
             </div>
+            <!-- الشعار فوق يسار -->
             <div class="left-logo">
                 <h1 onclick="switchTab('home-page')">SEN STORE</h1>
             </div>
         </div>
     </header>
 
+    <!-- القائمة الجانبية المنسدلة (Drawer Menu) -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleSidebar(false)"></div>
     <div class="sidebar-menu" id="sidebarMenu">
         <div class="sidebar-header">
@@ -633,10 +621,13 @@
         </ul>
     </div>
 
+    <!-- الحاوية الأساسية للمحتوى والصفحات -->
     <div class="container">
 
+        <!-- ================= [1] الصفحة الرئيسية ================= -->
         <div id="home-page" class="store-tab-content active-tab">
             
+            <!-- الأقسام الدائرية المتحركة -->
             <div class="categories-scroll-wrapper">
                 <div class="categories-scroll-container">
                     <div class="category-circle-item" onclick="switchTab('discord-page')">
@@ -660,23 +651,28 @@
                 </div>
             </div>
 
+            <!-- قسم خدمات ديسكورد -->
             <div class="section-title">
                 <h2>منتجات ديسكورد الأساسية</h2>
                 <a class="view-all-link" onclick="switchTab('discord-page')">عرض الكل <i class="fa-solid fa-arrow-left"></i></a>
             </div>
 
             <div class="products-grid" id="home-products-grid">
-                </div>
+                <!-- تعبئة المنتجات تلقائياً بجافا سكريبت -->
+            </div>
 
+            <!-- قسم روكت ليق السريع -->
             <div class="section-title">
                 <h2>خدمات وحسابات روكت ليق 🚀</h2>
                 <a class="view-all-link" onclick="switchTab('rocket-page')">استعراض القسم <i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="products-grid" id="home-rocket-grid">
-                </div>
+                <!-- تعبئة المنتجات تلقائياً بجافا سكريبت -->
+            </div>
 
         </div>
 
+        <!-- ================= [2] صفحة قسم ديسكورد بالكامل ================= -->
         <div id="discord-page" class="store-tab-content">
             <div class="section-title">
                 <h2>جميع منتجات ديسكورد</h2>
@@ -684,6 +680,7 @@
             <div class="products-grid" id="discord-full-grid"></div>
         </div>
 
+        <!-- ================= [3] صفحة قسم روكت ليق ================= -->
         <div id="rocket-page" class="store-tab-content">
             <div class="section-title">
                 <h2>قسم روكت ليق (حسابات + رانكات)</h2>
@@ -691,11 +688,13 @@
             <div class="products-grid" id="rocket-full-grid"></div>
         </div>
 
+        <!-- ================= [4] صفحة بكج الموردين ================= -->
         <div id="suppliers-page" class="store-tab-content">
             <div class="product-detail-view">
                 <div class="detail-header">
                     <div class="detail-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Suppliers Package">
+                        <!-- أيقونة الموردين مطفية فخمة بدلاً من رابط الصورة -->
+                        <i class="fa-solid fa-box-open"></i>
                     </div>
                     <div style="flex-grow: 1;">
                         <h2 style="font-size: 20px; margin-bottom: 5px;">بكج الموردين الشامل</h2>
@@ -725,6 +724,7 @@
             </div>
         </div>
 
+        <!-- ================= [5] صفحة سلة المشتريات ================= -->
         <div id="cart-page" class="store-tab-content">
             <div class="section-title">
                 <h2>سلة المشتريات الخاصّة بك</h2>
@@ -737,12 +737,13 @@
                     <span>الإجمالي الكلي:</span>
                     <span id="cart-total-price">0 ر.س</span>
                 </div>
-                <a href="https://discord.gg/sLL5" target="_blank" class="add-to-cart-btn" style="background-color: #25d366; padding: 14px;"><i class="fa-solid fa-check"></i> إتمام الشراء عبر الدعم الفني</a>
+                <a href="https://discord.gg/sll" target="_blank" class="add-to-cart-btn" style="background-color: #25d366; padding: 14px;"><i class="fa-solid fa-check"></i> إتمام الشراء عبر الدعم الفني</a>
             </div>
         </div>
 
     </div>
 
+    <!-- النافذة المنبثقة للتفاصيل (Modal) -->
     <div class="product-modal" id="productModal" onclick="closeProductModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-body">
@@ -752,10 +753,12 @@
         </div>
     </div>
 
+    <!-- أيقونة الواتساب العائمة -->
     <a href="https://wa.me/966500000000" target="_blank" class="whatsapp-btn-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- شريط التنقل السفلي الثابت -->
     <nav class="bottom-navbar">
         <div class="bottom-nav-link active-link" id="nav-home" onclick="switchTab('home-page')">
             <i class="fa-solid fa-house"></i>
@@ -776,15 +779,15 @@
         </div>
     </nav>
 
+    <!-- الأكواد البرمجية لإدارة المتجر والسلة والقوائم -->
     <script>
-        // قاعدة بيانات المنتجات
+        // قاعدة بيانات المنتجات - تم إلغاء روابط الصور تماماً والاعتماد بالكامل على أيقونات FontAwesome المطفية!
         const productsDB = [
             {
                 id: "p1",
                 name: "نيترو قيفت شهر كامل (Nitro Gift)",
                 price: 22,
                 category: "discord",
-                image: "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=600&auto=format&fit=crop", 
                 iconClass: "fab fa-discord",
                 desc: "<strong>مميزات الخدمة:</strong><ul class='desc-list'><li>نيترو قيفت رسمي وآمن 100%</li><li>صلاحية كاملة لمدة شهر كامل بدون أي انقطاع</li><li>ميزات البث عالي الدقة (HD) وإرسال ملفات بحجم أكبر</li><li>استخدام الستيكرات والرموز التعبيرية المخصصة في كل السيرفرات</li></ul>"
             },
@@ -793,7 +796,6 @@
                 name: "14 بوست سيرفر ديسكورد لمدة شهر",
                 price: 25,
                 category: "discord",
-                image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=600&auto=format&fit=crop", 
                 iconClass: "fa-solid fa-rocket",
                 desc: "<strong>تفاصيل البوستات:</strong><ul class='desc-list'><li>تحصل على 14 بوست لتفعيل اللفل 3 في سيرفرك فوراً</li><li>ثبات كامل ومضمون لمدة شهر</li><li>يرفع مستوى جودة الصوت والأيقونات وإمكانية تخصيص بنر سيرفرك</li></ul>"
             },
@@ -802,7 +804,6 @@
                 name: "حساب ديسكورد قديم (شامل الأيبيك الأصلي)",
                 price: 54,
                 category: "discord",
-                image: "", // أيقونة رمادية مطفية تلقائياً
                 iconClass: "fa-solid fa-user-shield",
                 desc: "<strong>معلومات الحساب الموثوق:</strong><ul class='desc-list'><li>حساب ديسكورد قديم ونادر يعزز ثقة سيرفرك وهيبتك</li><li>يشمل الإيميل الأصلي الأول والأيبيك الأصلي</li><li>آمن وغير مسترد ومفحوص بالكامل من فريقنا</li></ul>"
             },
@@ -811,7 +812,6 @@
                 name: "حسابات ديسكورد إنشاء تلقائي (تصلح للزحف وبوتات)",
                 price: 12,
                 category: "discord",
-                image: "", // أيقونة رمادية مطفية تلقائياً
                 iconClass: "fa-solid fa-robot",
                 desc: "<strong>تفاصيل الحسابات:</strong><ul class='desc-list'><li>حسابات مهيئة ومثالية للتطوير وإضافة بوتات الخدمة</li><li>منشأة بشكل آمن ومقاومة للحظر السريع</li><li>تسليم فوري للمعلومات</li></ul>"
             },
@@ -820,7 +820,6 @@
                 name: "خدمة رفع رانك روكت ليق (Rank Boosting)",
                 price: 15,
                 category: "rocket",
-                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop", 
                 iconClass: "fa-solid fa-trophy",
                 desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين في رانك جراند ماستر SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
             },
@@ -829,7 +828,6 @@
                 name: "حساب روكت ليق رانك GC (جراند ماستر) جاهز",
                 price: 120,
                 category: "rocket",
-                image: "",
                 iconClass: "fa-solid fa-gamepad",
                 desc: "<strong>محتويات الحساب الفخم:</strong><ul class='desc-list'><li>الحساب برانك جراند ماستر جاهز للتألق</li><li>كامل البيانات مع إيميل الإنشاء الأصلي</li><li>يحتوي على جوائز وأغراض نادرة</li></ul>"
             }
@@ -885,14 +883,10 @@
             let fullRocketHTML = "";
 
             productsDB.forEach(prod => {
-                const imgHTML = prod.image ? 
-                    `<img src="${prod.image}" alt="${prod.name}">` : 
-                    `<div class="fallback-img-gradient"><i class="${prod.iconClass}"></i></div>`;
-
                 const cardHTML = `
                     <div class="product-card" onclick="openProductDetails('${prod.id}')">
                         <div class="product-img-holder">
-                            ${imgHTML}
+                            <i class="${prod.iconClass}"></i>
                         </div>
                         <div class="product-details">
                             <h3 class="product-name">${prod.name}</h3>
@@ -924,12 +918,11 @@
             if (!product) return;
 
             const modalContentArea = document.getElementById('modal-content-area');
-            const imgHTML = product.image ? 
-                `<img src="${product.image}" style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px;">` : 
-                `<div style="width:100%; height:150px; background:linear-gradient(145deg, #161821, #0d0e14); display:flex; align-items:center; justify-content:center; border-radius:12px; margin-bottom:15px;"><i class="${product.iconClass}" style="font-size:50px; color:#4b4f59"></i></div>`;
 
             modalContentArea.innerHTML = `
-                ${imgHTML}
+                <div style="width:100%; height:140px; background:linear-gradient(145deg, #161821, #0d0e14); display:flex; align-items:center; justify-content:center; border-radius:12px; margin-bottom:15px;">
+                    <i class="${product.iconClass}" style="font-size:52px; color:#4b4f59"></i>
+                </div>
                 <h2 style="font-size:18px; font-weight:700; color:#fff; margin-bottom:10px;">${product.name}</h2>
                 <div class="product-desc-box">
                     ${product.desc}
