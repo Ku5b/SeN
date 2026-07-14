@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sen Store | متجر سين </title>
+    <title>Sen Store | متجر سين الاحترافي</title>
     <!-- خط Cairo الاحترافي للمتاجر -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +94,7 @@
         .left-logo {
             display: flex;
             align-items: center;
-            gap: 8px; /* مسافة بين الشعار والاسم */
+            gap: 8px;
             cursor: pointer;
         }
 
@@ -102,12 +102,6 @@
             font-size: 20px;
             color: #a582ff;
             text-shadow: 0 0 10px rgba(165, 130, 255, 0.6);
-        }
-
-        .left-logo img {
-            height: 24px;
-            width: auto;
-            object-fit: contain;
         }
 
         .left-logo h1 {
@@ -376,7 +370,6 @@
             border-color: rgba(92, 63, 161, 0.4);
         }
 
-        /* حامل الأيقونة التلقائية */
         .product-img-holder {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -448,7 +441,6 @@
             background-color: var(--purple-hover);
         }
 
-        /* صفحات الأقسام المستقلة */
         .store-tab-content {
             display: none;
         }
@@ -597,7 +589,7 @@
             position: fixed;
             bottom: 85px;
             left: 16px;
-            background-color: #5865F2; /* لون ديسكورد الرسمي */
+            background-color: #5865F2;
             color: white;
             width: 48px;
             height: 48px;
@@ -677,7 +669,6 @@
                 </button>
             </div>
             
-            <!-- الشعار فوق يسار مع الأيقونة الجديدة المضيئة بجانبه -->
             <div class="left-logo" onclick="switchTab('home-page')">
                 <i class="fa-solid fa-crown"></i> 
                 <h1>SEN STORE</h1>
@@ -754,7 +745,7 @@
 
             <!-- قسم روكت ليق السريع -->
             <div class="section-title">
-                <h2>  روكت ليق </h2>
+                <h2>خدمات وحسابات روكت ليق 🚀</h2>
                 <a class="view-all-link" onclick="switchTab('rocket-page')">استعراض القسم <i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="products-grid" id="home-rocket-grid">
@@ -766,7 +757,7 @@
         <!-- ================= [2] صفحة قسم ديسكورد بالكامل ================= -->
         <div id="discord-page" class="store-tab-content">
             <div class="section-title">
-                <h2> منتجات ديسكورد</h2>
+                <h2>جميع منتجات ديسكورد</h2>
             </div>
             <div class="products-grid" id="discord-full-grid"></div>
         </div>
@@ -792,11 +783,13 @@
                     </div>
                 </div>
                 <div class="product-desc-box">
-                    <strong>بكج الموردين مكون اكثر من مورد مميزين  ! ✨</strong>
+                    <strong>بكج الموردين مكون من +200 مورد مميزين جداً ونادرين! ✨</strong>
                     <ul class="desc-list">
-                        <li>موردين بوستات سيرفرات ديسكورد  </li>
-                        <li>موردين نيترو قيفت  </li>
-                        <li>حسابات ديسكورد قديمة )</li>
+                        <li>موردين بوستات سيرفرات ديسكورد بأسعار لا تصدق</li>
+                        <li>موردين نيترو قيفت وأكواد رخيصة</li>
+                        <li>حسابات ديسكورد قديمة ونادرة (شاملة الأيبك)</li>
+                        <li>توكنات ديسكورد عالية الجودة وبوتات حماية</li>
+                        <li>اشتراكات تطبيقات وشحن ألعاب وميزات (كريدت روكت ليق، فيزا التركية، يوزرات خماسية وسداسية).</li>
                     </ul>
                 </div>
                 <div style="font-size: 22px; font-weight: 700; color: #ffffff; margin: 20px 0;">62.92 ر.س</div>
@@ -887,15 +880,15 @@
             },
             {
                 id: "p3",
-                name: "حساب ديسكورد انشاء قديم  )",
-                price: على حسب المنتج,
+                name: "حساب ديسكورد قديم ",
+                price: 54,
                 category: "discord",
                 iconClass: "fa-solid fa-user-shield",
                 desc: "<strong>معلومات الحساب الموثوق:</strong><ul class='desc-list'><li>حساب ديسكورد قديم ونادر يعزز ثقة سيرفرك وهيبتك</li><li>يشمل الإيميل الأصلي الأول والأيبيك الأصلي</li><li>آمن وغير مسترد ومفحوص بالكامل من فريقنا</li></ul>"
             },
             {
                 id: "p4",
-                name: "حسابات ديسكورد إنشاء تلقائي (تصلح للزحف وبوتات)",
+                name: "حسابات ديسكورد إنشاء  ",
                 price: 12,
                 category: "discord",
                 iconClass: "fa-solid fa-robot",
@@ -904,14 +897,14 @@
             {
                 id: "rl1",
                 name: "خدمة رفع رانك روكت ليق (Rank Boosting)",
-                price: على حسب رانكك,
+                price: 15,
                 category: "rocket",
                 iconClass: "fa-solid fa-trophy",
-                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين في رانك جراند ماستر SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
+                desc: "<strong>خدمة الرفع الاحترافية:</strong><ul class='desc-list'><li>الرفع يتم بواسطة لاعبين في رانك عالي SSL</li><li>ضمان خصوصية حسابك وسلامته 100%</li><li>يمكننا اللعب معك (Duo) أو بحسابك مباشرة (Solo) حسب اختيارك</li></ul>"
             },
             {
                 id: "rl2",
-                name: "حساب روكت ليق رانك GC (جراند تشمابيون) جاهز",
+                name: "حساب روكت ليق رانك GC (جراند تشاىبيون) جاهز",
                 price: 120,
                 category: "rocket",
                 iconClass: "fa-solid fa-gamepad",
